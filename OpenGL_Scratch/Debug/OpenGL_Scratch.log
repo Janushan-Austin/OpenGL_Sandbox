@@ -1,0 +1,4 @@
+﻿  Application.cpp
+Application.obj : error LNK2019: unresolved external symbol _glfwInit referenced in function _main
+C:\Dev\Libraries\OpenGL\Libs\glfw3.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Dev\OpenGL_Scratch\OpenGL_Scratch\Debug\OpenGL_Scratch.exe : fatal error LNK1120: 1 unresolved externals
