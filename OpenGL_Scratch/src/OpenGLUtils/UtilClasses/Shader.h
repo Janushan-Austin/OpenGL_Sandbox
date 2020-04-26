@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "OpenGLUtils/OpenGLIncludeHeaders.h"
+#include "OpenGLUtils/Includes/OpenGLIncludeHeaders.h"
 
 struct ShaderProgramSource {
 	std::string vertexShader;

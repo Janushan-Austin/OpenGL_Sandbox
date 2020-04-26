@@ -209,17 +209,24 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
   <ItemGroup>
     <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h" />
     <ClInclude Include="src\Lessons\Textures\TexturesLesson.h" />
+    <ClInclude Include="src\OpenGLUtils\Includes\stb_image_include.h" />
+    <ClCompile Include="src\OpenGLUtils\stb_Image_helpers.cpp">
+      <FileType>CppHeader</FileType>
+    </ClCompile>
+    <ClInclude Include="src\OpenGLUtils\stb_Image_helpers.h" />
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h" />
     <ClInclude Include="src\allLessons.h" />
     <ClInclude Include="src\Lessons\HelloTriangle\HelloTriangle.h" />
     <ClInclude Include="src\OpenGLUtils\CallBackFunctions.h" />
     <ClInclude Include="src\OpenGLUtils\OpenGLHelpers.h" />
-    <ClInclude Include="src\OpenGLUtils\OpenGLIncludeHeaders.h" />
+    <ClInclude Include="src\OpenGLUtils\Includes\OpenGLIncludeHeaders.h" />
     <ClInclude Include="src\OpenGLUtils\OpenGLUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\BasicShaders\BasicUniforms.frag" />
     <None Include="res\shaders\BasicShaders\BasicYellowShader.frag" />
+    <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
+    <None Include="res\shaders\BasicShaders\SimpleTexture.vert" />
     <None Include="res\shaders\DefaultShader\DefaultShader.frag" />
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
     <None Include="res\shaders\BasicShaders\HorizontalOffset.vert" />

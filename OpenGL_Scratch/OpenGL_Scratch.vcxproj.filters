@@ -74,9 +74,6 @@
     <ClInclude Include="src\OpenGLUtils\OpenGLHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\OpenGLUtils\OpenGLIncludeHeaders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\OpenGLUtils\OpenGLUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,6 +84,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\Textures\TexturesLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\Includes\OpenGLIncludeHeaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\Includes\stb_image_include.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\stb_Image_helpers.cpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\stb_Image_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -100,5 +109,7 @@
     <None Include="res\shaders\BasicShaders\VertexColorShader.vert" />
     <None Include="res\shaders\BasicShaders\VertexPositionColor.vert" />
     <None Include="res\shaders\DefaultShader\DefaultShader.frag" />
+    <None Include="res\shaders\BasicShaders\SimpleTexture.vert" />
+    <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
   </ItemGroup>
 </Project>

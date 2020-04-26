@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	ShaderLessonEx3();
+	TexturesLesson();
 	return 0;
 }

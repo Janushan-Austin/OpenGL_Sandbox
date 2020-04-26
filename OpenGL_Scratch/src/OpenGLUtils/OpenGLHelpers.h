@@ -1,4 +1,4 @@
 #pragma once
-#include "OpenGLIncludeHeaders.h"
+#include "OpenGLUtils/Includes/OpenGLIncludeHeaders.h"
 
 void InitGLFW(int majorVersion, int minorVersion);
