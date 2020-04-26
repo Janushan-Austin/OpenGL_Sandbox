@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	HelloTriangleEx3();
+	ShaderLessonEx3();
 	return 0;
 }

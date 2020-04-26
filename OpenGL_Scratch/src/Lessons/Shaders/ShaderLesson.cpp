@@ -28,7 +28,7 @@ int ShaderLesson() {
 	glViewport(0, 0, 800, 600);
 
 	//Declare and compile shaders
-	Shader shaderTest("res/shaders/VertexColorShader.vert", "res/shaders/VertexColorShader.frag");
+	Shader shaderTest("res/shaders/BasicShaders/VertexColorShader.vert", "res/shaders/BasicShaders/VertexColorShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle lesson vertices

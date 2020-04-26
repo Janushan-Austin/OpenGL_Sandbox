@@ -33,7 +33,7 @@ int HelloTriangleEx2() {
 	glViewport(0, 0, 800, 600);
 
 	//Decalre and Compile shaders
-	Shader shader("res/shaders/DefaultShader/BasicShader.vert", "res/shaders/DefaultShader/BasicShader.frag");
+	Shader shader("res/shaders/DefaultShader/DefaultShader.vert", "res/shaders/DefaultShader/DefaultShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle exercise 1 vertices

@@ -2,8 +2,8 @@
 #include <cmath>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-//using the same outline as the ShaderLesson make a vertex shader that flips vertices about the x-axis
-int ShaderLessonEx1() {
+// Using the Shader lesson template create a shader that outputs the color depending on the vertex position
+int ShaderLessonEx3() {
 
 	InitGLFW(3, 3);
 
@@ -28,7 +28,7 @@ int ShaderLessonEx1() {
 	glViewport(0, 0, 800, 600);
 
 	//Declare and compile shaders
-	Shader shaderTest("res/shaders/BasicShaders/UpsideDown.vert", "res/shaders/BasicShaders/VertexColorShader.frag");
+	Shader shaderTest("res/shaders/BasicShaders/VertexPositionColor.vert", "res/shaders/BasicShaders/VertexColorShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle lesson vertices
@@ -86,9 +86,6 @@ int ShaderLessonEx1() {
 		//check input
 		processInput(window);
 
-		float time = glfwGetTime();
-		float greenValue = std::sin(time) / 2.0f + 0.5f;
-
 		//rendering commands here
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -97,7 +94,7 @@ int ShaderLessonEx1() {
 		shaderTest.Bind();
 
 		//set Uniform values for our shader
-		shaderTest.SetUniform4f("myColor", 0.0, greenValue, 0.0, 1.0);
+		shaderTest.SetUniform1f("xOffset", 0.25);
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);

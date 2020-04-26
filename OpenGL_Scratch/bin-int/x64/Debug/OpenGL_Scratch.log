@@ -1,14 +1,1 @@
-﻿  Creating master header files
-  Application.cpp
-  HelloTriangleEx1.cpp
-  HelloTriangleEx2.cpp
-  HelloTriangleEx3.cpp
-  HelloTriangle.cpp
-  ShaderLessonEx1.cpp
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\shaders\exercises\ex1\shaderlessonex1.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  ShaderLesson.cpp
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\shaders\shaderlesson.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-  OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
-  copy res folder to output
-  7 File(s) copied
+﻿  stb_image.cpp

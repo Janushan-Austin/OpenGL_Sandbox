@@ -48,6 +48,18 @@
     <ClCompile Include="src\Lessons\Shaders\Exercises\Ex1\ShaderLessonEx1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Shaders\Exercises\Ex2\ShaderLessonEx2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lessons\Shaders\Exercises\Ex3\ShaderLessonEx3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lessons\Textures\TexturesLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -74,14 +86,19 @@
     <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lessons\Textures\TexturesLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\VertexColorShader.vert" />
-    <None Include="res\shaders\VertexColorShader.frag" />
-    <None Include="res\shaders\DefaultShader\BasicShader.frag" />
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
-    <None Include="res\shaders\BasicUniforms.frag" />
-    <None Include="res\shaders\BasicYellowShader.frag" />
-    <None Include="res\shaders\UpsideDown.vert" />
+    <None Include="res\shaders\BasicShaders\BasicYellowShader.frag" />
+    <None Include="res\shaders\BasicShaders\BasicUniforms.frag" />
+    <None Include="res\shaders\BasicShaders\HorizontalOffset.vert" />
+    <None Include="res\shaders\BasicShaders\VertexColorShader.frag" />
+    <None Include="res\shaders\BasicShaders\UpsideDown.vert" />
+    <None Include="res\shaders\BasicShaders\VertexColorShader.vert" />
+    <None Include="res\shaders\BasicShaders\VertexPositionColor.vert" />
+    <None Include="res\shaders\DefaultShader\DefaultShader.frag" />
   </ItemGroup>
 </Project>

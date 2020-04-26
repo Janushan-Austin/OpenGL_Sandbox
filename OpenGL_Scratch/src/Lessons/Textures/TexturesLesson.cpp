@@ -2,8 +2,8 @@
 #include <cmath>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-//using the same outline as the ShaderLesson make a vertex shader that flips vertices about the x-axis
-int ShaderLessonEx1() {
+// Lesson Getting Familar with Shaders and creating a shader class
+int ShaderLesson() {
 
 	InitGLFW(3, 3);
 
@@ -28,7 +28,7 @@ int ShaderLessonEx1() {
 	glViewport(0, 0, 800, 600);
 
 	//Declare and compile shaders
-	Shader shaderTest("res/shaders/BasicShaders/UpsideDown.vert", "res/shaders/BasicShaders/VertexColorShader.frag");
+	Shader shaderTest("res/shaders/BasicShaders/VertexColorShader.vert", "res/shaders/BasicShaders/VertexColorShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle lesson vertices

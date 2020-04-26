@@ -191,7 +191,10 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Lessons\Shaders\Exercises\Ex1\ShaderLessonEx1.cpp" />
+    <ClCompile Include="src\Lessons\Shaders\Exercises\Ex2\ShaderLessonEx2.cpp" />
+    <ClCompile Include="src\Lessons\Shaders\Exercises\Ex3\ShaderLessonEx3.cpp" />
     <ClCompile Include="src\Lessons\Shaders\ShaderLesson.cpp" />
+    <ClCompile Include="src\Lessons\Textures\TexturesLesson.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader.cpp" />
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\glad.c" />
@@ -201,9 +204,11 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\Lessons\HelloTriangle\HelloTriangle.cpp" />
     <ClCompile Include="src\OpenGLUtils\CallBackFunctions.cpp" />
     <ClCompile Include="src\OpenGLUtils\OpenGLHelpers.cpp" />
+    <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h" />
+    <ClInclude Include="src\Lessons\Textures\TexturesLesson.h" />
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h" />
     <ClInclude Include="src\allLessons.h" />
     <ClInclude Include="src\Lessons\HelloTriangle\HelloTriangle.h" />
@@ -213,13 +218,15 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClInclude Include="src\OpenGLUtils\OpenGLUtils.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\BasicUniforms.frag" />
-    <None Include="res\shaders\BasicYellowShader.frag" />
-    <None Include="res\shaders\DefaultShader\BasicShader.frag" />
+    <None Include="res\shaders\BasicShaders\BasicUniforms.frag" />
+    <None Include="res\shaders\BasicShaders\BasicYellowShader.frag" />
+    <None Include="res\shaders\DefaultShader\DefaultShader.frag" />
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
-    <None Include="res\shaders\UpsideDown.vert" />
-    <None Include="res\shaders\VertexColorShader.frag" />
-    <None Include="res\shaders\VertexColorShader.vert" />
+    <None Include="res\shaders\BasicShaders\HorizontalOffset.vert" />
+    <None Include="res\shaders\BasicShaders\UpsideDown.vert" />
+    <None Include="res\shaders\BasicShaders\VertexColorShader.frag" />
+    <None Include="res\shaders\BasicShaders\VertexColorShader.vert" />
+    <None Include="res\shaders\BasicShaders\VertexPositionColor.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
