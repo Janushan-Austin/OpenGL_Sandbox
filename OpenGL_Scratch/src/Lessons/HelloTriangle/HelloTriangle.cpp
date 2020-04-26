@@ -1,5 +1,5 @@
 #include <iostream>
-#include "HelloTriangle.h"
+//#include "HelloTriangle.h"
 #include "OpenGLUtils/OpenGLUtils.h"
 
 //first we drew a single triangle on the screen then we drew a rectangle by constructing two triangles
@@ -78,7 +78,7 @@ int HelloTriangle() {
 	//glDeleteShader(vertexShader);
 	//glDeleteShader(fragmentShader);
 
-	Shader shaderTest("res/shaders/BasicShader.vert", "res/shaders/BasicShader.frag");
+	Shader shaderTest("res/shaders/DefaultShader/BasicShader.vert", "res/shaders/DefaultShader/BasicShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle lesson vertices
@@ -135,7 +135,7 @@ int HelloTriangle() {
 		processInput(window);
 
 		//rendering commands here
-		glClearColor(0.2, 0.3, 0.3, 1.0);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//set our shader program to be the active shader for OpenGL

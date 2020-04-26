@@ -1,20 +1,10 @@
-//#include "HelloTriangleEx3.h"
 #include <iostream>
+#include <cmath>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-extern const char* vertexShaderSource;
-extern const char* fragmentShaderSource;
+//using the same outline as the ShaderLesson make a vertex shader that flips vertices about the x-axis
+int ShaderLessonEx1() {
 
-const char* fragmentShaderYellowSource = 
-R"(#version 330 core
-out vec4 FragColor;
-void main()
-{
-	FragColor = vec4(1.0, 1.0, 0.0, 1.0);
-})";
-
-//create two triangles with one triangle using a different shader
-int HelloTriangleEx3() {
 	InitGLFW(3, 3);
 
 	//Create a window for glfw
@@ -37,19 +27,20 @@ int HelloTriangleEx3() {
 
 	glViewport(0, 0, 800, 600);
 
-	//Decalre and Compile shaders
-	Shader shader("res/shaders/DefaultShader/BasicShader.vert", "res/shaders/DefaultShader/BasicShader.frag");
-	Shader shaderYellow("res/shaders/DefaultShader/BasicShader.vert", "res/shaders/BasicYellowShader.frag");
+	//Declare and compile shaders
+	Shader shaderTest("res/shaders/UpsideDown.vert", "res/shaders/VertexColorShader.frag");
 
 	//create data and store data in a vertex buffer
-	//hello triangle exercise 1 vertices
+	//hello triangle lesson vertices
 	float vertices[] = {
-		-0.5, 0.0, 0.0,
-		-0.25, 0.0, 0.0,
-		-0.375, 0.5, 0.0,
-		0.25, 0.0, 0.0,
-		0.5, 0.0, 0.0,
-		0.375, 0.5, 0.0
+		// positions         // colors
+		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+		 0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f,    // top 
+		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f   // bottom left
+	};
+
+	unsigned int indices[] = {  // note that we start from 0!
+	0, 1, 2,   // first triangle
 	};
 
 	//create Vertex Array Object to store state dependent details about vertex buffer states
@@ -66,9 +57,18 @@ int HelloTriangleEx3() {
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+	//create Element Buffer Object to tell OpenGL the ordering of my vertices and how triangles should be constructed
+	unsigned int ElementBufferObject = 0;
+	glGenBuffers(1, &ElementBufferObject);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 	//tell GPU how to process data in the array
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vertices[0]), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)(3 * sizeof(vertices[0])));
+	glEnableVertexAttribArray(1);
 
 	//we can now safely unbind the vertex buffer object since it has been associated with out vertex array object
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -76,25 +76,34 @@ int HelloTriangleEx3() {
 	//unbind VertexArray for consistency
 	glBindVertexArray(0);
 
+	//now that the vertexArray is unbound we can unbind its Element buffer object since the VAO is no longer tracking the active EBO
+	//the VAO does not save the EBO the same way as it does the VBO. Saves EBO by state-tracking while it is active
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+
+
 	while (!glfwWindowShouldClose(window)) {
 		//check input
 		processInput(window);
+
+		float time = glfwGetTime();
+		float greenValue = std::sin(time) / 2.0f + 0.5f;
 
 		//rendering commands here
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//set our shader program to be the active shader for OpenGL
-		shader.Bind();
+		shaderTest.Bind();
+
+		//set Uniform values for our shader
+		shaderTest.SetUniform4f("myColor", 0.0, greenValue, 0.0, 1.0);
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);
 
 		//OpenGL function to draw the data in the currently active vertex array using the Element Buffer Object
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-
-		shaderYellow.Bind();
-		glDrawArrays(GL_TRIANGLES, 3, 3);
+		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, 0);
 
 		// check and call events and swap buffers
 		glfwSwapBuffers(window);

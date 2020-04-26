@@ -107,10 +107,11 @@
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
+      <Message>Creating master header files</Message>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>call powershell.exe rm -r -fo "$(OutDir)res"
-xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -128,10 +129,11 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
+      <Message>Creating master header files</Message>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>call powershell.exe rm -r -fo "$(OutDir)res"
-xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -153,10 +155,11 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
+      <Message>Creating master header files</Message>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>call powershell.exe rm -r -fo "$(OutDir)res"
-xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -178,14 +181,16 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
+      <Message>Creating master header files</Message>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>call powershell.exe rm -r -fo "$(OutDir)res"
-xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Lessons\Shaders\Exercises\Ex1\ShaderLessonEx1.cpp" />
     <ClCompile Include="src\Lessons\Shaders\ShaderLesson.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader.cpp" />
     <ClCompile Include="Src\Application.cpp" />
@@ -201,14 +206,20 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
     <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h" />
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h" />
     <ClInclude Include="src\allLessons.h" />
-    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.h" />
-    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex2\HelloTriangleEx2.h" />
-    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.h" />
     <ClInclude Include="src\Lessons\HelloTriangle\HelloTriangle.h" />
     <ClInclude Include="src\OpenGLUtils\CallBackFunctions.h" />
     <ClInclude Include="src\OpenGLUtils\OpenGLHelpers.h" />
     <ClInclude Include="src\OpenGLUtils\OpenGLIncludeHeaders.h" />
     <ClInclude Include="src\OpenGLUtils\OpenGLUtils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\BasicUniforms.frag" />
+    <None Include="res\shaders\BasicYellowShader.frag" />
+    <None Include="res\shaders\DefaultShader\BasicShader.frag" />
+    <None Include="res\shaders\DefaultShader\BasicShader.vert" />
+    <None Include="res\shaders\UpsideDown.vert" />
+    <None Include="res\shaders\VertexColorShader.frag" />
+    <None Include="res\shaders\VertexColorShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

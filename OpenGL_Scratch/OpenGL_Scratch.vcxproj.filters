@@ -45,21 +45,15 @@
     <ClCompile Include="src\Lessons\Shaders\ShaderLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Shaders\Exercises\Ex1\ShaderLessonEx1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\HelloTriangle\HelloTriangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex2\HelloTriangleEx2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGLUtils\CallBackFunctions.h">
@@ -80,5 +74,14 @@
     <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\VertexColorShader.vert" />
+    <None Include="res\shaders\VertexColorShader.frag" />
+    <None Include="res\shaders\DefaultShader\BasicShader.frag" />
+    <None Include="res\shaders\DefaultShader\BasicShader.vert" />
+    <None Include="res\shaders\BasicUniforms.frag" />
+    <None Include="res\shaders\BasicYellowShader.frag" />
+    <None Include="res\shaders\UpsideDown.vert" />
   </ItemGroup>
 </Project>

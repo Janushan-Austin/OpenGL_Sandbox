@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	HelloTriangle();
+	HelloTriangleEx3();
 	return 0;
 }

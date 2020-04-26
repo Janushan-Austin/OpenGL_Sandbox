@@ -1,9 +1,8 @@
 #include <iostream>
 #include <cmath>
-#include "ShaderLesson.h"
 #include "OpenGLUtils/OpenGLUtils.h"
 
-//first we drew a single triangle on the screen then we drew a rectangle by constructing two triangles
+// Lesson Getting Familar with Shaders and creating a shader class
 int ShaderLesson() {
 	
 	InitGLFW(3, 3);
@@ -29,20 +28,19 @@ int ShaderLesson() {
 	glViewport(0, 0, 800, 600);
 
 	//Declare and compile shaders
-	Shader shaderTest("res/shaders/BasicShader.vert", "res/shaders/BasicUniforms.frag");
+	Shader shaderTest("res/shaders/VertexColorShader.vert", "res/shaders/VertexColorShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle lesson vertices
 	float vertices[] = {
-	-0.5f, -0.5f, 0.0f, //bottom left
-	 0.5f, -0.5f, 0.0f, // bottom right
-	 0.5f,  0.5f, 0.0f, // top right
-	-0.5f,  0.5f, 0.0f // top left
+		// positions         // colors
+		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+		 0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f,    // top 
+		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f   // bottom left
 	};
 
 	unsigned int indices[] = {  // note that we start from 0!
-	0, 1, 3,   // first triangle
-	1, 2, 3    // second triangle
+	0, 1, 2,   // first triangle
 	};
 
 	//create Vertex Array Object to store state dependent details about vertex buffer states
@@ -66,8 +64,11 @@ int ShaderLesson() {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	//tell GPU how to process data in the array
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(vertices[0]), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)(3*sizeof(vertices[0])));
+	glEnableVertexAttribArray(1);
 
 	//we can now safely unbind the vertex buffer object since it has been associated with out vertex array object
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -86,15 +87,17 @@ int ShaderLesson() {
 		processInput(window);
 
 		float time = glfwGetTime();
-		float greenValue = std::sin(time) / 2.0 + 0.5;
+		float greenValue = std::sin(time) / 2.0f + 0.5f;
 
 		//rendering commands here
-		glClearColor(0.2, 0.3, 0.3, 1.0);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//set our shader program to be the active shader for OpenGL
-		//glUseProgram(shaderProgram);
 		shaderTest.Bind();
+
+		//set Uniform values for our shader
+		shaderTest.SetUniform4f("myColor", 0.0, greenValue, 0.0, 1.0);
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);

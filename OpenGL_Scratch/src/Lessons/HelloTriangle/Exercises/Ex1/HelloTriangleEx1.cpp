@@ -1,4 +1,4 @@
-#include "HelloTriangleEx1.h"
+//#include "HelloTriangleEx1.h"
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
@@ -30,7 +30,7 @@ int HelloTriangleEx1() {
 	glViewport(0, 0, 800, 600);
 
 	//Decalre and Compile shaders
-	Shader shader("res/shaders/BasicShader.vert", "res/shaders/BasicShader.frag");
+	Shader shader("res/shaders/DefaultShader/BasicShader.vert", "res/shaders/DefaultShader/BasicShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle exercise 1 vertices
@@ -72,7 +72,7 @@ int HelloTriangleEx1() {
 		processInput(window);
 
 		//rendering commands here
-		glClearColor(0.2, 0.3, 0.3, 1.0);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//set our shader program to be the active shader for OpenGL
