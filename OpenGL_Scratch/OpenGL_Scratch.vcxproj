@@ -195,6 +195,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\Lessons\Shaders\Exercises\Ex3\ShaderLessonEx3.cpp" />
     <ClCompile Include="src\Lessons\Shaders\ShaderLesson.cpp" />
     <ClCompile Include="src\Lessons\Textures\TexturesLesson.cpp" />
+    <ClCompile Include="src\Lessons\TransformationsLesson\TransformationsLesson.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader.cpp" />
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\glad.c" />
@@ -209,6 +210,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
   <ItemGroup>
     <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h" />
     <ClInclude Include="src\Lessons\Textures\TexturesLesson.h" />
+    <ClInclude Include="src\Lessons\TransformationsLesson\TransformationsLesson.h" />
     <ClInclude Include="src\OpenGLUtils\Includes\stb_image_include.h" />
     <ClCompile Include="src\OpenGLUtils\stb_Image_helpers.cpp">
       <FileType>CppHeader</FileType>
