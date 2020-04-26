@@ -42,6 +42,9 @@
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Shaders\ShaderLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

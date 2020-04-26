@@ -78,7 +78,7 @@ int HelloTriangle() {
 	//glDeleteShader(vertexShader);
 	//glDeleteShader(fragmentShader);
 
-	Shader shaderTest("res/shaders/BasicShader.vs", "res/shaders/BasicShader.fs");
+	Shader shaderTest("res/shaders/BasicShader.vert", "res/shaders/BasicShader.frag");
 
 	//create data and store data in a vertex buffer
 	//hello triangle lesson vertices

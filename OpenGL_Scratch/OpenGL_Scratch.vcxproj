@@ -109,7 +109,8 @@
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+      <Command>call powershell.exe rm -r -fo "$(OutDir)res"
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -129,7 +130,8 @@ call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File Cre
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+      <Command>call powershell.exe rm -r -fo "$(OutDir)res"
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -153,7 +155,8 @@ call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File Cre
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+      <Command>call powershell.exe rm -r -fo "$(OutDir)res"
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -177,11 +180,13 @@ call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File Cre
 call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\OpenGLUtils OpenGLUtils.h</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
+      <Command>call powershell.exe rm -r -fo "$(OutDir)res"
+xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R</Command>
       <Message>copy res folder to output</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Lessons\Shaders\ShaderLesson.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader.cpp" />
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\glad.c" />
@@ -193,6 +198,7 @@ call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File Cre
     <ClCompile Include="src\OpenGLUtils\OpenGLHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Lessons\Shaders\ShaderLesson.h" />
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h" />
     <ClInclude Include="src\allLessons.h" />
     <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.h" />

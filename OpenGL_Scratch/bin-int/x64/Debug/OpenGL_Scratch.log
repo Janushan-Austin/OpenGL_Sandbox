@@ -34,6 +34,7 @@
   
   
   current include extension:  Lessons\Shaders
+  Include being generated for header file:  Lessons\Shaders\ShaderLesson.h
   
   
   
@@ -56,6 +57,11 @@
   current include extension:  UtilClasses
   Include being generated for header file:  UtilClasses\Shader.h
   
+  ShaderLesson.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\shaders\shaderlesson.cpp(88): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\shaders\shaderlesson.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\shaders\shaderlesson.cpp(92): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  Shader.cpp
   Application.cpp
   HelloTriangleEx1.cpp
 c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\exercises\ex1\hellotriangleex1.cpp(75): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
@@ -65,10 +71,14 @@ c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\exercises\ex2\hel
 c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\exercises\ex3\hellotriangleex3.cpp(84): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   HelloTriangle.cpp
 c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\hellotriangle.cpp(138): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  CallBackFunctions.cpp
+  OpenGLHelpers.cpp
   Generating Code...
+  glad.c
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
   copy res folder to output
-  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicShader.fs
-  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicShader.vs
-  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicYellowShader.fs
-  3 File(s) copied
+  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicShader.frag
+  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicShader.vert
+  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicUniforms.frag
+  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicYellowShader.frag
+  4 File(s) copied
