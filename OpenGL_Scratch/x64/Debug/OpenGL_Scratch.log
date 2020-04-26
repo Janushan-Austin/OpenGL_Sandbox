@@ -1,3 +1,0 @@
-﻿  Application.cpp
-c:\dev\opengl_scratch\opengl_scratch\src\application.cpp(40): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\x64\Debug\OpenGL_Scratch.exe
