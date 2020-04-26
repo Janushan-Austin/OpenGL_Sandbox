@@ -1,0 +1,56 @@
+﻿  modifying args[2]
+  
+  
+  src
+  allLessons.h
+  Lessons
+  path of file being made is:  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\allLessons.h
+  Writing to header file  + C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\allLessons.h
+  
+  Generating master header fil
+  
+  
+  
+  current include extension:  Lessons
+  
+  
+  current include extension:  Lessons\HelloTriangle
+  Include being generated for header file:  Lessons\HelloTriangle\HelloTriangle.h
+  
+  
+  current include extension:  Lessons\HelloTriangle\Exercises
+  
+  
+  current include extension:  Lessons\HelloTriangle\Exercises\Ex1
+  Include being generated for header file:  Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.h
+  
+  
+  current include extension:  Lessons\HelloTriangle\Exercises\Ex2
+  Include being generated for header file:  Lessons\HelloTriangle\Exercises\Ex2\HelloTriangleEx2.h
+  
+  
+  current include extension:  Lessons\HelloTriangle\Exercises\Ex3
+  Include being generated for header file:  Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.h
+  
+  
+  
+  src\SharedOpenGLFunctions
+  SharedOpenGL.h
+  
+  path of file being made is:  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\SharedOpenGLFunctions\SharedOpenGL.h
+  Writing to header file  + C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\SharedOpenGLFunctions\SharedOpenGL.h
+  
+  Generating master header fil
+  
+  
+  
+  No Include Extension
+  Include being generated for header file:  CallBackFunctions.h
+  Include being generated for header file:  OpenGLHelpers.h
+  Include being generated for header file:  OpenGLIncludeHeaders.h
+  
+  Application.cpp
+  HelloTriangle.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\hellotriangle.cpp(138): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  Generating Code...
+  OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe

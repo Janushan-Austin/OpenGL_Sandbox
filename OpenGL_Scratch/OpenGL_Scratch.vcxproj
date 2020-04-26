@@ -70,19 +70,21 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(SolutionDir)src\;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Dev\Libraries\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(SolutionDir)src\;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Dev\Libraries\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(SolutionDir)src\;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Dev\Libraries\OpenGL\Libs;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Dev\Libraries\OpenGL\Includes;$(SolutionDir)src\;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Dev\Libraries\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -91,10 +93,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
+call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\SharedOpenGLFunctions SharedOpenGL.h</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -102,10 +109,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
+call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\SharedOpenGLFunctions SharedOpenGL.h</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -115,12 +127,17 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
+call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\SharedOpenGLFunctions SharedOpenGL.h</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -130,16 +147,38 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
+call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src\SharedOpenGLFunctions SharedOpenGL.h</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\glad.c" />
+    <ClCompile Include="src\Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.cpp" />
+    <ClCompile Include="src\Lessons\HelloTriangle\Exercises\Ex2\HelloTriangleEx2.cpp" />
+    <ClCompile Include="src\Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.cpp" />
+    <ClCompile Include="src\Lessons\HelloTriangle\HelloTriangle.cpp" />
+    <ClCompile Include="src\SharedOpenGLFunctions\CallBackFunctions.cpp" />
+    <ClCompile Include="src\SharedOpenGLFunctions\OpenGLHelpers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\allLessons.h" />
+    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.h" />
+    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex2\HelloTriangleEx2.h" />
+    <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.h" />
+    <ClInclude Include="src\Lessons\HelloTriangle\HelloTriangle.h" />
+    <ClInclude Include="src\SharedOpenGLFunctions\CallBackFunctions.h" />
+    <ClInclude Include="src\SharedOpenGLFunctions\OpenGLHelpers.h" />
+    <ClInclude Include="src\SharedOpenGLFunctions\OpenGLIncludeHeaders.h" />
+    <ClInclude Include="src\SharedOpenGLFunctions\SharedOpenGL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
