@@ -33,12 +33,15 @@
   Include being generated for header file:  Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.h
   
   
+  current include extension:  Lessons\Shaders
   
-  src\SharedOpenGLFunctions
-  SharedOpenGL.h
   
-  path of file being made is:  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\SharedOpenGLFunctions\SharedOpenGL.h
-  Writing to header file  + C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\SharedOpenGLFunctions\SharedOpenGL.h
+  
+  src\OpenGLUtils
+  OpenGLUtils.h
+  
+  path of file being made is:  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\OpenGLUtils\OpenGLUtils.h
+  Writing to header file  + C:\Dev\OpenGL_Scratch\OpenGL_Scratch\src\OpenGLUtils\OpenGLUtils.h
   
   Generating master header fil
   
@@ -49,8 +52,23 @@
   Include being generated for header file:  OpenGLHelpers.h
   Include being generated for header file:  OpenGLIncludeHeaders.h
   
+  
+  current include extension:  UtilClasses
+  Include being generated for header file:  UtilClasses\Shader.h
+  
   Application.cpp
+  HelloTriangleEx1.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\exercises\ex1\hellotriangleex1.cpp(125): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  HelloTriangleEx2.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\exercises\ex2\hellotriangleex2.cpp(149): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  HelloTriangleEx3.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\exercises\ex3\hellotriangleex3.cpp(161): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   HelloTriangle.cpp
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\hellotriangle.cpp(138): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\hellotriangle\hellotriangle.cpp(140): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  Shader.cpp
   Generating Code...
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
+  copy res folder to output
+  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicShader.fs
+  C:\Dev\OpenGL_Scratch\OpenGL_Scratch\res\shaders\BasicShader.vs
+  2 File(s) copied

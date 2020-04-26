@@ -1,6 +1,6 @@
 #include <iostream>
 #include "HelloTriangle.h"
-#include "SharedOpenGLFunctions/SharedOpenGL.h"
+#include "OpenGLUtils/OpenGLUtils.h"
 
 extern const char* vertexShaderSource;
 extern const char* fragmentShaderSource;
@@ -80,6 +80,8 @@ int HelloTriangle() {
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+	Shader shaderTest("res/shaders/BasicShader.vs", "res/shaders/BasicShader.fs");
+
 	//create data and store data in a vertex buffer
 	//hello triangle lesson vertices
 	float vertices[] = {
@@ -139,7 +141,8 @@ int HelloTriangle() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//set our shader program to be the active shader for OpenGL
-		glUseProgram(shaderProgram);
+		//glUseProgram(shaderProgram);
+		shaderTest.Bind();
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);

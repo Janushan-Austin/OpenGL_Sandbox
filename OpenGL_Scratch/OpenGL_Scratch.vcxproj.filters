@@ -24,9 +24,6 @@
     <ClCompile Include="src\Lessons\HelloTriangle\HelloTriangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SharedOpenGLFunctions\CallBackFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,7 +33,13 @@
     <ClCompile Include="src\Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SharedOpenGLFunctions\OpenGLHelpers.cpp">
+    <ClCompile Include="src\OpenGLUtils\CallBackFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\OpenGLHelpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\HelloTriangle\HelloTriangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SharedOpenGLFunctions\CallBackFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex1\HelloTriangleEx1.h">
@@ -59,13 +59,19 @@
     <ClInclude Include="src\Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\SharedOpenGLFunctions\OpenGLHelpers.h">
+    <ClInclude Include="src\OpenGLUtils\CallBackFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\SharedOpenGLFunctions\OpenGLIncludeHeaders.h">
+    <ClInclude Include="src\OpenGLUtils\OpenGLHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\SharedOpenGLFunctions\SharedOpenGL.h">
+    <ClInclude Include="src\OpenGLUtils\OpenGLIncludeHeaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\OpenGLUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

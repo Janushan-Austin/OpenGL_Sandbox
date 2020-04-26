@@ -1,6 +1,6 @@
 #include "HelloTriangleEx3.h"
 #include <iostream>
-#include "SharedOpenGLFunctions/SharedOpenGL.h"
+#include "OpenGLUtils/OpenGLUtils.h"
 
 extern const char* vertexShaderSource;
 extern const char* fragmentShaderSource;
