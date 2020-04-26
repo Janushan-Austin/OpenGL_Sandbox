@@ -2,9 +2,6 @@
 #include "HelloTriangle.h"
 #include "OpenGLUtils/OpenGLUtils.h"
 
-extern const char* vertexShaderSource;
-extern const char* fragmentShaderSource;
-
 //first we drew a single triangle on the screen then we drew a rectangle by constructing two triangles
 int HelloTriangle() {
 	
@@ -32,53 +29,54 @@ int HelloTriangle() {
 
 	//compile shaders
 	//vertex shader compilation
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
+	//manual way of compiling shaders, no longer needed since we have a shader class now
+	//unsigned int vertexShader;
+	//vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	//glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	//glCompileShader(vertexShader);
 
-	//check for vertex shader successful compilation
-	int shaderCompilationSuccess;
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &shaderCompilationSuccess);
-	if (!shaderCompilationSuccess) {
-		char infoLog[512];
-		glGetShaderInfoLog(vertexShader, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
+	////check for vertex shader successful compilation
+	//int shaderCompilationSuccess;
+	//glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &shaderCompilationSuccess);
+	//if (!shaderCompilationSuccess) {
+	//	char infoLog[512];
+	//	glGetShaderInfoLog(vertexShader, sizeof(infoLog), NULL, infoLog);
+	//	std::cout << "ERROR:: SHADDER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+	//}
 
-	//fragment shader compilation
-	unsigned int fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+	////fragment shader compilation
+	//unsigned int fragmentShader;
+	//fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	//glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	//glCompileShader(fragmentShader);
 
-	//check for fragment shader successful compilation
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &shaderCompilationSuccess);
-	if (!shaderCompilationSuccess) {
-		char infoLog[512];
-		glGetShaderInfoLog(fragmentShader, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
+	////check for fragment shader successful compilation
+	//glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &shaderCompilationSuccess);
+	//if (!shaderCompilationSuccess) {
+	//	char infoLog[512];
+	//	glGetShaderInfoLog(fragmentShader, sizeof(infoLog), NULL, infoLog);
+	//	std::cout << "ERROR:: SHADDER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+	//}
 
-	//shader program creation
-	unsigned int shaderProgram;
-	shaderProgram = glCreateProgram();
+	////shader program creation
+	//unsigned int shaderProgram;
+	//shaderProgram = glCreateProgram();
 
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
+	//glAttachShader(shaderProgram, vertexShader);
+	//glAttachShader(shaderProgram, fragmentShader);
+	//glLinkProgram(shaderProgram);
 
-	//check for shader program successful linking
-	glGetShaderiv(shaderProgram, GL_COMPILE_STATUS, &shaderCompilationSuccess);
-	if (!shaderCompilationSuccess) {
-		char infoLog[512];
-		glGetShaderInfoLog(shaderProgram, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-	}
+	////check for shader program successful linking
+	//glGetShaderiv(shaderProgram, GL_COMPILE_STATUS, &shaderCompilationSuccess);
+	//if (!shaderCompilationSuccess) {
+	//	char infoLog[512];
+	//	glGetShaderInfoLog(shaderProgram, sizeof(infoLog), NULL, infoLog);
+	//	std::cout << "ERROR:: SHADDER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+	//}
 
-	//delete vertex and fragment shaders since they have now been linked to the shader program
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	////delete vertex and fragment shaders since they have now been linked to the shader program
+	//glDeleteShader(vertexShader);
+	//glDeleteShader(fragmentShader);
 
 	Shader shaderTest("res/shaders/BasicShader.vs", "res/shaders/BasicShader.fs");
 

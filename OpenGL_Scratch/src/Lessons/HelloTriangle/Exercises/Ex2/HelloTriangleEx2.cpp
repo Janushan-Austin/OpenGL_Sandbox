@@ -32,55 +32,8 @@ int HelloTriangleEx2() {
 
 	glViewport(0, 0, 800, 600);
 
-	//compile shaders
-	//vertex shader compilation
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	//check for vertex shader successful compilation
-	int shaderCompilationSuccess;
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &shaderCompilationSuccess);
-	if (!shaderCompilationSuccess) {
-		char infoLog[512];
-		glGetShaderInfoLog(vertexShader, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-
-	//fragment shader compilation
-	unsigned int fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-
-	//check for fragment shader successful compilation
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &shaderCompilationSuccess);
-	if (!shaderCompilationSuccess) {
-		char infoLog[512];
-		glGetShaderInfoLog(fragmentShader, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-
-	//shader program creation
-	unsigned int shaderProgram;
-	shaderProgram = glCreateProgram();
-
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-
-	//check for shader program successful linking
-	glGetShaderiv(shaderProgram, GL_COMPILE_STATUS, &shaderCompilationSuccess);
-	if (!shaderCompilationSuccess) {
-		char infoLog[512];
-		glGetShaderInfoLog(shaderProgram, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-	}
-
-	//delete vertex and fragment shaders since they have now been linked to the shader program
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	//Decalre and Compile shaders
+	Shader shader("res/shaders/BasicShader.vs", "res/shaders/BasicShader.fs");
 
 	//create data and store data in a vertex buffer
 	//hello triangle exercise 1 vertices
@@ -150,7 +103,7 @@ int HelloTriangleEx2() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//set our shader program to be the active shader for OpenGL
-		glUseProgram(shaderProgram);
+		shader.Bind();
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject1);
