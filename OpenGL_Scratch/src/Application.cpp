@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	TransformationsLesson();
+	CoordinateSystems();
 	return 0;
 }

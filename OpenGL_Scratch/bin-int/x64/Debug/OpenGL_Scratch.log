@@ -1,10 +1,25 @@
 ﻿  Creating master header files
+  Discrepency in output file, creating new output file
+  Cube.cpp
+  CoordinateSystems.cpp
+  ShaderLessonEx1.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\shaders\exercises\ex1\shaderlessonex1.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  ShaderLessonEx2.cpp
+  ShaderLessonEx3.cpp
+  ShaderLesson.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\shaders\shaderlesson.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  TexturesLesson.cpp
   TransformationsLesson.cpp
 c:\dev\opengl_scratch\opengl_scratch\src\lessons\transformationslesson\transformationslesson.cpp(133): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
+  HelloTriangleEx1.cpp
+  HelloTriangleEx2.cpp
+  HelloTriangleEx3.cpp
+  HelloTriangle.cpp
+  Generating Code...
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
   copy res folder to output
-  15 File(s) copied
+  16 File(s) copied

@@ -132,8 +132,8 @@ int TransformationsLesson() {
 		//transformationMat = glm::rotate(transformationMat, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 		transformationMat = glm::scale(transformationMat, glm::vec3(std::sin(glfwGetTime())));
 
+		
 		shaderTest.SetUniformMat4("transformationMat", transformationMat);
-
 		//draw a second container at the top left of the screen using the same vertex data just a different transform
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, 0);
 
