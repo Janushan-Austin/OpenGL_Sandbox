@@ -5,6 +5,7 @@ if($args.count -eq 0){
 	exit
 }
 
+$global:readIntoArray = $TRUE
 $initialExtension = ""
 if($args.count -eq 3){
 	$initialExtension = $args[2]
@@ -25,15 +26,25 @@ $outFileDir = $cwd.Path + "\" + $args[0]
 #$outFileName = $args[1]
 $outFile = $outFileDir + "\" + $args[1]
 
+$oldFileLines
+
 if(!(Test-Path $outFile)){
+	$readIntoArray = $FALSE
 	Write-Host "Creating new header file"
 	Write-Host
 	New-Item -path $outFileDir -name $outFileName -type "file"
 }
+else{
+	foreach($line in [System.IO.File]::ReadLines($outFile)){
+		#Write-Host $line
+		$oldFileLines += @($line)
+	}
+	#$oldFileLines
+}
 #Write-Host "Writing to header file " + $outFile
 #Write-Host
 
-function AddIncludesRecursively($outFilePath, $outFileName, $Folder, $PathExtension){
+function AddIncludesRecursively($outFilePath, $outFileName, $Folder, $PathExtension,$oldLines, $newLines){
 	$files = Get-ChildItem $Folder *.h
 	$subFolders = Get-ChildItem $Folder -Directory
 
@@ -41,24 +52,47 @@ function AddIncludesRecursively($outFilePath, $outFileName, $Folder, $PathExtens
 		#Write-Host "current include extension: "$PathExtension
 		$PathExtension = $PathExtension + "\"
 	}
-	#else{
-		#Write-Host "No Include Extension"
-	#}
+
+	#Write-Host "read into array: " $global:readIntoArray
 
 	foreach($file in $files){
 		if(!($file.Name -eq $outFileName)){
 			#Write-Host "Include being generated for header file: " $PathExtenSion$file
-			'#include "'+  $PathExtension +  $file + '"' >> $outFilePath
+			$currentLine = '#include "'+  $PathExtension +  $file + '"'
+			#Write-Host "current line: " $currentLine
+			if($global:readIntoArray -eq $FALSE){
+				#'#include "'+  $PathExtension +  $file + '"' >> $outFilePath
+				$currentLine >> $outFilePath
+			}
+			else{
+				$global:readIntoArray = $FALSE
+				foreach($line in $oldLines){
+					if($line -eq $currentLine){
+						$global:readIntoArray = $TRUE
+						break
+					}
+				}
+				$newLines += $currentLine
+
+				if($global:readIntoArray -eq $FALSE){
+					Write-Host "Discrepency in output file, creating new output file"
+					Clear-Content $outFilePath
+					foreach($line in $newLines){
+						$line >> $outFilePath
+					}
+				}
+			}
 		}
 	}
 
 	foreach($subFolder in $subFolders){
 		$SubPathExtension = $PathExtension + $subFolder
-		AddIncludesRecursively $outFile $outFileName ($Folder + "/" + $subFolder) $SubPathExtension
+		AddIncludesRecursively $outFile $outFileName ($Folder + "/" + $subFolder) $SubPathExtension $oldLines $newLines
 	}
 }
 
 #Write-Host "Generating master header file"
-"#pragma once" > $outFile
+$ReadLines = @("#pragma once")
+#"#pragma once" > $outFile
 
-AddIncludesRecursively $outFile $args[1] ($args[0] + "/" + $args[2]) $initialExtension
+AddIncludesRecursively $outFile $args[1] ($args[0] + "/" + $args[2]) $initialExtension $oldFileLines $ReadLines
