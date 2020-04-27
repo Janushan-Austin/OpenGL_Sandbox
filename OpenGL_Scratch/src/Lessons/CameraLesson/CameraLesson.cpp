@@ -1,10 +1,8 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-glm::mat4 createPerspectiveProjection(float fov, float width, float height, float znear, float zfar);
-
 // Lesson Getting Familar with Shaders and creating a shader class
-int CoordinateSystems() {
+int CameraLesson() {
 
 	InitGLFW(3, 3);
 
@@ -196,17 +194,19 @@ int CoordinateSystems() {
 		shader.Bind();
 
 		//transformationMat * glm::mat4(1.0f);
-		glm::mat4 theirPerspective = glm::perspective(glm::radians(90.0f), 800.0f / 600, 0.1f, 100.0f);
+		glm::mat4 theirPerspective = glm::perspectiveFov(glm::radians(90.0f), 800.0f,  600.0f, 0.1f, 100.0f);
 
-		glm::mat4 myPerspective = createPerspectiveProjection(glm::radians(90.0f), 800, 600, 0.1f, 100.0f);
-		glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+		float radius = 10.0f;
+		float camX = sin(glfwGetTime()) * radius;
+		float camZ = cos(glfwGetTime()) * radius;
+		glm::mat4 view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
 		shader.SetUniformMat4("view", view);
 		shader.SetUniformMat4("projection", theirPerspective);
 
-		
+
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);
@@ -233,29 +233,4 @@ int CoordinateSystems() {
 
 	glfwTerminate();
 	return 0;
-}
-
-//create my own perspective projection matrix
-glm::mat4 createPerspectiveProjection(float fov, float width, float height, float znear, float zfar) {
-	assert(fov > 0);
-	assert(width > 0);
-	assert(height > 0);
-
-	glm::mat4 result(0.0f);
-	//using cotangent(fov/2) by simplifying 2n/r-l when l = -r we get 2n/2r where r = aspectration * scale * n
-	//following through the simplification you will end up with (1/aspectratio) * (1/tan(fov/2) -> (height/width) * cot
-	float coScale = 1.0f / std::tan(fov*0.5f);
-	float heightScale = coScale;
-	float widthScale = coScale * height / width;
-
-	result[0][0] = widthScale;
-
-	result[1][1] = heightScale;
-
-	result[2][2] = -(zfar + znear) / (zfar - znear);
-	result[2][3] = -1;
-
-	result[3][2] = -(2 * zfar * znear) / (zfar - znear);
-
-	return result;
 }

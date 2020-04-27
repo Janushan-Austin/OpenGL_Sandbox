@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	CoordinateSystems();
+	CameraLesson();
 	return 0;
 }
