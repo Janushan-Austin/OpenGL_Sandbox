@@ -1,6 +1,5 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
-#include <sstream>
 
 // Lesson Getting Familar with Shaders and creating a shader class
 int TransformationsLesson() {
@@ -28,7 +27,7 @@ int TransformationsLesson() {
 	glViewport(0, 0, 800, 600);
 
 	//Declare and compile shaders
-	Shader shaderTest("res/shaders/BasicShaders/SimpleTexture.vert", "res/shaders/BasicShaders/SimpleTexture.frag");
+	Shader shaderTest("res/shaders/BasicShaders/TransformationShaders/TransformationShader.vert", "res/shaders/BasicShaders/TransformationShaders/TransformationShader.frag");
 
 	float vertices[] = {
 		// positions          // colors           // texture coords
@@ -89,6 +88,9 @@ int TransformationsLesson() {
 	//the VAO does not save the EBO the same way as it does the VBO. Saves EBO by state-tracking while it is active
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	
+
+
 
 	while (!glfwWindowShouldClose(window)) {
 		//check input
@@ -100,6 +102,14 @@ int TransformationsLesson() {
 
 		//set our shader program to be the active shader for OpenGL
 		shaderTest.Bind();
+
+		//create a transformation matrix using translate rotate scale (order matters trs)
+		glm::mat4 transformationMat = glm::mat4(1.0f);
+		transformationMat = glm::translate(transformationMat, glm::vec3(0.5f, -0.5f, 0.0f));
+		transformationMat = glm::rotate(transformationMat, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+		transformationMat = glm::scale(transformationMat, glm::vec3(1.0f));
+
+		shaderTest.SetUniformMat4("transformationMat", transformationMat);
 
 		//Bind our texture before drawing
 		glActiveTexture(GL_TEXTURE0);
@@ -115,6 +125,16 @@ int TransformationsLesson() {
 		glBindVertexArray(VertexArrayObject);
 
 		//OpenGL function to draw the data in the currently active vertex array using the Element Buffer Object
+		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, 0);
+
+		transformationMat = glm::mat4(1.0f);
+		transformationMat = glm::translate(transformationMat, glm::vec3(-0.5f, 0.5f, 0.0f));
+		//transformationMat = glm::rotate(transformationMat, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+		transformationMat = glm::scale(transformationMat, glm::vec3(std::sin(glfwGetTime())));
+
+		shaderTest.SetUniformMat4("transformationMat", transformationMat);
+
+		//draw a second container at the top left of the screen using the same vertex data just a different transform
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, 0);
 
 		// check and call events and swap buffers

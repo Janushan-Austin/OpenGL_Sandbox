@@ -229,6 +229,8 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <None Include="res\shaders\BasicShaders\BasicYellowShader.frag" />
     <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
     <None Include="res\shaders\BasicShaders\SimpleTexture.vert" />
+    <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.frag" />
+    <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.vert" />
     <None Include="res\shaders\DefaultShader\DefaultShader.frag" />
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
     <None Include="res\shaders\BasicShaders\HorizontalOffset.vert" />

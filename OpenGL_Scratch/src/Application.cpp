@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	TexturesLesson();
+	TransformationsLesson();
 	return 0;
 }

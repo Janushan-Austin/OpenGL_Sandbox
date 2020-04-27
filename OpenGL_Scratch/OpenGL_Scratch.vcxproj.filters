@@ -117,5 +117,7 @@
     <None Include="res\shaders\DefaultShader\DefaultShader.frag" />
     <None Include="res\shaders\BasicShaders\SimpleTexture.vert" />
     <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
+    <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.frag" />
+    <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.vert" />
   </ItemGroup>
 </Project>

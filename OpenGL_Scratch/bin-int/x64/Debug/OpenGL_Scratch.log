@@ -1,5 +1,10 @@
 ﻿  Creating master header files
   TransformationsLesson.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\transformationslesson\transformationslesson.cpp(133): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
   copy res folder to output
-  13 File(s) copied
+  15 File(s) copied
