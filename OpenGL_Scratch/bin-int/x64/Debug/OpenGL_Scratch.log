@@ -1,7 +1,7 @@
 ﻿  Creating master header files
   CameraLesson.cpp
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(200): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(201): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(214): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(215): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
   copy res folder to output
   16 File(s) copied

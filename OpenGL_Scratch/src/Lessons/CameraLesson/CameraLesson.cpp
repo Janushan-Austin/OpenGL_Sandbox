@@ -1,6 +1,20 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
+glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::vec3 up) {
+	glm::vec3 cameraForward = glm::normalize(cameraPos - cameraTarget);
+	glm::vec3 cameraRight = glm::normalize(glm::cross(cameraForward, up));
+	glm::vec3 cameraUp = glm::normalize(glm::cross(cameraRight, cameraForward));
+
+	glm::mat4 result(1.0);
+	
+	result[0][0] = cameraRight.x; result[1][0] = cameraRight.y; result[2][0] = cameraRight.z; result[3][0] = -glm::dot(cameraPos, cameraRight);
+	result[0][1] = cameraUp.x; result[1][1] = cameraUp.y; result[2][1] = cameraUp.z; result[3][1] = -glm::dot(cameraPos, cameraUp);
+	result[0][2] = cameraForward.x; result[1][2] = cameraForward.y; result[2][2] = cameraForward.z; result[3][2] = -glm::dot(cameraPos, cameraForward);
+
+	return result;
+}
+
 // Lesson Getting Familar with Shaders and creating a shader class
 int CameraLesson() {
 
@@ -91,7 +105,7 @@ int CameraLesson() {
 
 	//used for translating multiple cube objects into the world
 	glm::vec3 cubePositions[] = {
-	  glm::vec3(0.0f,  0.0f,  0.0f),
+	  glm::vec3(0.0f,  0.0f,  5.0f),
 	  glm::vec3(2.0f,  5.0f, -15.0f),
 	  glm::vec3(-1.5f, -2.2f, -2.5f),
 	  glm::vec3(-3.8f, -2.0f, -12.3f),
@@ -199,11 +213,12 @@ int CameraLesson() {
 		float radius = 10.0f;
 		float camX = sin(glfwGetTime()) * radius;
 		float camZ = cos(glfwGetTime()) * radius;
-		glm::mat4 view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+		glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+		glm::mat4 myView = CreateLookAtMatrix(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
-		shader.SetUniformMat4("view", view);
+		shader.SetUniformMat4("view", myView);
 		shader.SetUniformMat4("projection", theirPerspective);
 
 
