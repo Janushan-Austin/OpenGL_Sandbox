@@ -3,8 +3,9 @@
 
 glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::vec3 up) {
 	glm::vec3 cameraForward = glm::normalize(cameraPos - cameraTarget);
-	glm::vec3 cameraRight = glm::normalize(glm::cross(cameraForward, up));
-	glm::vec3 cameraUp = glm::normalize(glm::cross(cameraRight, cameraForward));
+	// point right hand fingers in direction of first vector then curl fingers towards other vector and thumb points in the direction the cross vector points
+	glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraForward)); 
+	glm::vec3 cameraUp = (glm::cross(cameraForward, cameraRight));
 
 	glm::mat4 result(1.0);
 	
@@ -105,7 +106,7 @@ int CameraLesson() {
 
 	//used for translating multiple cube objects into the world
 	glm::vec3 cubePositions[] = {
-	  glm::vec3(0.0f,  0.0f,  5.0f),
+	  glm::vec3(0.0f,  0.0f,  0.0f),
 	  glm::vec3(2.0f,  5.0f, -15.0f),
 	  glm::vec3(-1.5f, -2.2f, -2.5f),
 	  glm::vec3(-3.8f, -2.0f, -12.3f),
@@ -196,9 +197,19 @@ int CameraLesson() {
 	glBindTexture(GL_TEXTURE_2D, textureSmileyFace);
 	shader.SetUniform1i("texture2", 1);
 
+	glm::vec3 cameraPos(0.0f);
+	glm::vec3 cameraFront(0.0f, 0.0f, -1.0f);
+	glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
+
+	float deltaTime = 0;
+	float lastFrame = glfwGetTime();
+
 	while (!glfwWindowShouldClose(window)) {
 		//check input
+		deltaTime = glfwGetTime() - lastFrame;
+		lastFrame = glfwGetTime();
 		processInput(window);
+		processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
 
 		//rendering commands here
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -213,8 +224,8 @@ int CameraLesson() {
 		float radius = 10.0f;
 		float camX = sin(glfwGetTime()) * radius;
 		float camZ = cos(glfwGetTime()) * radius;
-		glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
-		glm::mat4 myView = CreateLookAtMatrix(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+		glm::mat4 myView = CreateLookAtMatrix(cameraPos,cameraPos + cameraFront, cameraUp);
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
