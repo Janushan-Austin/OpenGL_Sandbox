@@ -1,6 +1,37 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
+static struct MouseGLCallbackWrapper {
+	static Camera* camera;
+	static int lastX, lastY;
+	static bool firstMouseMove;
+
+	static void mouse_Movement_Callback(GLFWwindow* window, double xPos, double yPos) {
+		if (camera != NULL) {
+			if (firstMouseMove) {
+				lastX = xPos;
+				lastY = yPos;
+				firstMouseMove = false;
+			}
+
+			camera->ProcessMouseMovement((float)(xPos -lastX), (float)(yPos - lastY));
+
+			lastX = xPos;
+			lastY = yPos;
+		}
+	}
+
+	static void mouse_Scroll_Callback(GLFWwindow* window, double xOffset, double yOffset) {
+		if (camera != NULL) {
+			camera->ProcessMouseScroll((float)yOffset);
+		}
+	}
+};
+Camera* MouseGLCallbackWrapper::camera = NULL;
+int MouseGLCallbackWrapper::lastX = 0;
+int MouseGLCallbackWrapper::lastY = 0;
+bool MouseGLCallbackWrapper::firstMouseMove = true;
+
 glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::vec3 up) {
 	glm::vec3 cameraForward = glm::normalize(cameraPos - cameraTarget);
 	// point right hand fingers in direction of first vector then curl fingers towards other vector and thumb points in the direction the cross vector points
@@ -18,11 +49,13 @@ glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::v
 
 // Lesson Getting Familar with Shaders and creating a shader class
 int CameraLesson() {
+	//create a callback wrapper object to hold an instance of our camera to dispatch camera related events
+	MouseGLCallbackWrapper cameraMouseCallbackWrapper;
 
 	InitGLFW(3, 3);
 
 	//Create a window for glfw
-	GLFWwindow* window = glfwCreateWindow(2560, 1440, "LearnOpenGL Transformations", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1920, 1080, "LearnOpenGL Cameras", NULL, NULL);
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window\n";
 		glfwTerminate();
@@ -31,6 +64,8 @@ int CameraLesson() {
 	else {
 		glfwMakeContextCurrent(window);
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+		glfwSetCursorPosCallback(window, cameraMouseCallbackWrapper.mouse_Movement_Callback);
+		glfwSetScrollCallback(window, cameraMouseCallbackWrapper.mouse_Scroll_Callback);
 	}
 
 	//Initialize GLAD (load all OpenGL function pointers)
@@ -41,6 +76,9 @@ int CameraLesson() {
 
 	//set openGL to take into consideration the depth buffer before drawing a pixel
 	glEnable(GL_DEPTH_TEST);
+
+	// tell GLFW to capture our mouse
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	//Declare and compile shaders
 	Shader shader("res/shaders/BasicShaders/TransformationShaders/MVP.vert", "res/shaders/BasicShaders/TransformationShaders/TransformationShader.frag");
@@ -201,6 +239,10 @@ int CameraLesson() {
 	glm::vec3 cameraFront(0.0f, 0.0f, -1.0f);
 	glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
 
+	FlyingCamera camera(cameraPos,90.0f, -90.0f);
+
+	cameraMouseCallbackWrapper.camera = &camera;
+
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();
 
@@ -209,7 +251,8 @@ int CameraLesson() {
 		deltaTime = glfwGetTime() - lastFrame;
 		lastFrame = glfwGetTime();
 		processInput(window);
-		processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
+		//processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
+		processCameraInput(window, camera, deltaTime);
 
 		//rendering commands here
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -219,13 +262,14 @@ int CameraLesson() {
 		shader.Bind();
 
 		//transformationMat * glm::mat4(1.0f);
-		glm::mat4 theirPerspective = glm::perspectiveFov(glm::radians(90.0f), 800.0f,  600.0f, 0.1f, 100.0f);
+		glm::mat4 theirPerspective = glm::perspectiveFov(glm::radians(camera.FOV()), 1920.0f,  1080.0f, 0.1f, 100.0f);
 
 		float radius = 10.0f;
 		float camX = sin(glfwGetTime()) * radius;
 		float camZ = cos(glfwGetTime()) * radius;
 		glm::mat4 view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
-		glm::mat4 myView = CreateLookAtMatrix(cameraPos,cameraPos + cameraFront, cameraUp);
+		glm::mat4 myView;// = CreateLookAtMatrix(cameraPos, cameraPos + cameraFront, cameraUp);
+		myView = camera.GenerateViewMatrix();
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
