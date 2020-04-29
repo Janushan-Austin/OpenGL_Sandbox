@@ -13,10 +13,7 @@ public:
 	virtual void ProcessKeyboardInput(MovementDirection direction, float deltaTime) override;
 	virtual void ProcessMouseScroll(float yOffset) override;
 
-protected:
-	virtual void UpdateCameraVectors() override;
-	virtual void UpdateCameraRotationVectors();
 
-	bool greaterThanNinety;
+protected:
 };
 

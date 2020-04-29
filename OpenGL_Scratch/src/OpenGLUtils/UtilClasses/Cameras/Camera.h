@@ -30,21 +30,20 @@ public:
 	inline const glm::vec3& Front() { return cameraFront; }
 	inline const glm::vec3& Right() { return cameraRight; }
 	inline const glm::vec3& Up() { return cameraUp; }
-	inline const glm::vec3& RotationPlaneUp() { return cameraRotationPlaneUp; }
 	inline const float& FOV() { return fov; }
 
 	virtual void ProcessMouseMovement(float xOffset, float yOffset) =0;
 	virtual void ProcessKeyboardInput(MovementDirection direction, float deltaTime) = 0;
 	virtual void ProcessMouseScroll(float yOffset) =0;
 protected:
+	virtual void ApplyPitch(float pitchOffset);
+	virtual void ApplyYaw(float pitchOffset);
+	virtual void ApplyRoll(float pitchOffset);
 
-	virtual void UpdateCameraVectors() = 0;
 
 	glm::vec3 cameraPos, cameraFront, cameraRight, cameraUp;
-	glm::vec3 cameraRotationPlaneUp;
 
 	float yaw, pitch, roll;
-	int deltaRoll;
 
 	float fov;
 };

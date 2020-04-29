@@ -13,6 +13,8 @@ public:
 	virtual void ProcessMouseScroll(float yOffset) override;
 
 protected:
-	virtual void UpdateCameraVectors() override;
+
+	virtual void ApplyPitch(float pitchOffset) override;
+	//virtual void ApplyPitch(float pitchOffset) override;
 };
 
