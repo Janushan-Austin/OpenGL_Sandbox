@@ -239,9 +239,10 @@ int CameraLesson() {
 	glm::vec3 cameraFront(0.0f, 0.0f, -1.0f);
 	glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
 
-	FlyingFPSCamera camera(cameraPos,glm::vec3(0.0f, 1.0f, 0.0f), 800, 600,90.0f, -90.0f);
+	FlyingFPSCamera fpsCamera(cameraPos,glm::vec3(0.0f, 1.0f, 0.0f), 800, 600,90.0f, -90.0f);
+	FlyingCamera flyingCamera(cameraPos, 800, 600, 90.0f, -90.0f);
 
-	cameraMouseCallbackWrapper.camera = &camera;
+	cameraMouseCallbackWrapper.camera = &fpsCamera;
 
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();
@@ -252,7 +253,7 @@ int CameraLesson() {
 		lastFrame = glfwGetTime();
 		processInput(window);
 		//processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
-		processCameraInput(window, camera, deltaTime);
+		processCameraInput(window, fpsCamera, deltaTime);
 
 		//rendering commands here
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -262,14 +263,14 @@ int CameraLesson() {
 		shader.Bind();
 
 		//transformationMat * glm::mat4(1.0f);
-		glm::mat4 theirPerspective = glm::perspectiveFov(glm::radians(camera.FOV()), 1920.0f,  1080.0f, 0.1f, 100.0f);
+		glm::mat4 theirPerspective = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), 1920.0f,  1080.0f, 0.1f, 100.0f);
 
 		float radius = 10.0f;
 		float camX = sin(glfwGetTime()) * radius;
 		float camZ = cos(glfwGetTime()) * radius;
 		glm::mat4 view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
 		glm::mat4 myView;// = CreateLookAtMatrix(cameraPos, cameraPos + cameraFront, cameraUp);
-		myView = camera.GenerateViewMatrix();
+		myView = fpsCamera.GenerateViewMatrix();
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
@@ -284,7 +285,7 @@ int CameraLesson() {
 		for (unsigned int i = 0; i < numberCubes; i++) {
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, cubePositions[i]);
-			model = glm::rotate(model, (float)glfwGetTime()* glm::radians(20.0f*i), glm::vec3(0.5f, 1.0f, 0.0f));
+			//model = glm::rotate(model, (float)glfwGetTime()* glm::radians(20.0f*i), glm::vec3(0.5f, 1.0f, 0.0f));
 			shader.SetUniformMat4("model", model);
 
 

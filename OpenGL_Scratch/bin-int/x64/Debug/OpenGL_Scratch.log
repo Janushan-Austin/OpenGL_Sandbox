@@ -1,5 +1,15 @@
 ﻿  Creating master header files
-  FlyingFPSCamera.cpp
+  CameraLesson.cpp
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(29): warning C4091: 'static ': ignored on left of 'MouseGLCallbackWrapper' when no variable is declared
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(13): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(248): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(252): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(253): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(269): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_scratch\src\lessons\cameralesson\cameralesson.cpp(270): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
   copy res folder to output
   16 File(s) copied
