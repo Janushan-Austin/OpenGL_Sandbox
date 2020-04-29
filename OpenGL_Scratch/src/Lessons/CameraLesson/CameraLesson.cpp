@@ -239,7 +239,7 @@ int CameraLesson() {
 	glm::vec3 cameraFront(0.0f, 0.0f, -1.0f);
 	glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
 
-	FlyingFPSCamera camera(cameraPos,90.0f, -90.0f);
+	FlyingFPSCamera camera(cameraPos,glm::vec3(0.0f, 1.0f, 0.0f), 800, 600,90.0f, -90.0f);
 
 	cameraMouseCallbackWrapper.camera = &camera;
 

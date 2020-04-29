@@ -1,38 +1,11 @@
 #include "Camera.h"
 
-Camera::Camera(glm::vec3 pos, float fov, float y, float p, float r) : cameraPos(pos), yaw(y), pitch(p), roll(r), fov(fov), cameraFront(0.0f, 0.0f, -1.0f), cameraRight(1.0f, 0.0f, 0.0f), cameraUp(0.0f, 1.0f, 0.0f)
+Camera::Camera(glm::vec3 pos, unsigned int w, unsigned int h, float fov, float y, float p, float r) : cameraPos(pos), width(w), height(h), yaw(y), pitch(p), roll(r), fov(fov), cameraFront(0.0f, 0.0f, -1.0f), cameraRight(1.0f, 0.0f, 0.0f), cameraUp(0.0f, 1.0f, 0.0f)
 {
-	ApplyPitch(0.0f);
-	ApplyYaw(0.0f);
-	ApplyRoll(0.0f);
 }
 
 Camera::~Camera()
 {
-}
-
-void Camera::ApplyPitch(float pitchOffset)
-{
-	pitch -= pitchOffset;
-	cameraFront = glm::normalize((cameraFront * cosf(glm::radians(-pitchOffset))) + (cameraUp * sinf(glm::radians(-pitchOffset))));
-
-	cameraUp = glm::cross(cameraRight, cameraFront);
-}
-
-void Camera::ApplyYaw(float yawOffset)
-{
-	yaw += yawOffset;
-	cameraFront = glm::normalize((cameraFront * cosf(glm::radians(yawOffset))) + (cameraRight * sinf(glm::radians(yawOffset))));
-
-	cameraRight = glm::cross(cameraFront, cameraUp);
-}
-
-void Camera::ApplyRoll(float rollOffset)
-{
-	roll += rollOffset;
-	cameraRight = glm::normalize((cameraRight * cosf(glm::radians(rollOffset))) + (cameraUp * sinf(glm::radians(rollOffset))));
-
-	cameraUp = glm::cross(cameraRight, cameraFront);
 }
 
 glm::mat4 Camera::GenerateViewMatrix() {

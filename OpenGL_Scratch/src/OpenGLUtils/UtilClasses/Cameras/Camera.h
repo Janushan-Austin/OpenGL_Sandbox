@@ -20,7 +20,7 @@ const float CameraSpeed = 2.5f;
 class Camera
 {
 public:
-	Camera(glm::vec3 pos = glm::vec3(0.0f), float fov = 90.0f, float y = 0.0f, float p = 0.0f, float r = 0.0f);
+	Camera(glm::vec3 pos = glm::vec3(0.0f), unsigned int width = 800, unsigned int height =600, float fov = 90.0f, float y = 0.0f, float p = 0.0f, float r = 0.0f);
 	virtual ~Camera();
 
 	virtual glm::mat4 GenerateViewMatrix();
@@ -31,17 +31,17 @@ public:
 	inline const glm::vec3& Right() { return cameraRight; }
 	inline const glm::vec3& Up() { return cameraUp; }
 	inline const float& FOV() { return fov; }
+	inline const unsigned int& Height() { return height; }
+	inline const unsigned int& Width() { return width; }
+	inline void SetDimmensions(unsigned int width_, unsigned int height_) { width = width_; height = height_; }
 
 	virtual void ProcessMouseMovement(float xOffset, float yOffset) =0;
 	virtual void ProcessKeyboardInput(MovementDirection direction, float deltaTime) = 0;
 	virtual void ProcessMouseScroll(float yOffset) =0;
 protected:
-	virtual void ApplyPitch(float pitchOffset);
-	virtual void ApplyYaw(float pitchOffset);
-	virtual void ApplyRoll(float pitchOffset);
-
-
 	glm::vec3 cameraPos, cameraFront, cameraRight, cameraUp;
+
+	unsigned int width, height;
 
 	float yaw, pitch, roll;
 

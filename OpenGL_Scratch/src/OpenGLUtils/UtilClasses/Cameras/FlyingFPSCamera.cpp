@@ -2,8 +2,10 @@
 
 
 
-FlyingFPSCamera::FlyingFPSCamera(glm::vec3 pos, float fov, float y, float p, float r) :Camera(pos, fov, y, p, r)
+FlyingFPSCamera::FlyingFPSCamera(glm::vec3 pos, glm::vec3 worldUp_, unsigned int w, unsigned int h, float fov, float y, float p) :Camera(pos, w, h, fov, y, p)
 {
+	worldUp = worldUp_;
+	UpdateCameraVectors();
 }
 
 
@@ -15,8 +17,17 @@ void FlyingFPSCamera::ProcessMouseMovement(float xOffset, float yOffset)
 {
 	xOffset *= MouseSensitivity, yOffset *= MouseSensitivity;
 
-	ApplyYaw(xOffset);
-	ApplyPitch(yOffset);
+	pitch -= yOffset;
+	yaw += xOffset;
+
+	if (pitch > 89.0f) {
+		pitch = 89.0f;
+	}
+	else if (pitch < -89.0f) {
+		pitch = -89.0f;
+	}
+
+	UpdateCameraVectors();
 }
 
 void FlyingFPSCamera::ProcessKeyboardInput(MovementDirection direction, float deltaTime)
@@ -56,10 +67,14 @@ void FlyingFPSCamera::ProcessMouseScroll(float yOffset)
 	}
 }
 
-void FlyingFPSCamera::ApplyPitch(float pitchOffset)
+void FlyingFPSCamera::UpdateCameraVectors()
 {
-	pitch -= pitchOffset;
-	cameraFront = glm::normalize((cameraFront * cosf(glm::radians(-pitchOffset))) + (glm::vec3(0.0f, 1.0f, 0.0f) * sinf(glm::radians(-pitchOffset))));
+	glm::vec3 front(0.0f);
+	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.y = sin(glm::radians(pitch));
+	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
-	cameraUp = glm::cross(cameraRight, cameraFront);
+	cameraFront = glm::normalize(front);
+	cameraRight = glm::normalize(glm::cross(cameraFront, worldUp));
+	cameraUp = glm::normalize(glm::cross(cameraRight, cameraFront));
 }

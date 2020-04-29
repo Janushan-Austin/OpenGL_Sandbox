@@ -2,8 +2,11 @@
 
 
 
-FlyingCamera::FlyingCamera(glm::vec3 pos, float fov, float y, float p, float r) :Camera(pos, fov, y, p, r)
+FlyingCamera::FlyingCamera(glm::vec3 pos, unsigned int w, unsigned int h, float fov, float y, float p, float r) :Camera(pos, w, h, fov, y, p, r)
 {
+	ApplyPitch(0);
+	ApplyYaw(0);
+	ApplyRoll(0);
 }
 
 
@@ -59,4 +62,28 @@ void FlyingCamera::ProcessMouseScroll(float yOffset)
 	else if (fov > 120.0f) {
 		fov = 120.0f;
 	}
+}
+
+void FlyingCamera::ApplyPitch(float pitchOffset)
+{
+	pitch -= pitchOffset;
+	cameraFront = glm::normalize((cameraFront * cosf(glm::radians(-pitchOffset))) + (cameraUp * sinf(glm::radians(-pitchOffset))));
+
+	cameraUp = glm::cross(cameraRight, cameraFront);
+}
+
+void FlyingCamera::ApplyYaw(float yawOffset)
+{
+	yaw += yawOffset;
+	cameraFront = glm::normalize((cameraFront * cosf(glm::radians(yawOffset))) + (cameraRight * sinf(glm::radians(yawOffset))));
+
+	cameraRight = glm::cross(cameraFront, cameraUp);
+}
+
+void FlyingCamera::ApplyRoll(float rollOffset)
+{
+	roll += rollOffset;
+	cameraRight = glm::normalize((cameraRight * cosf(glm::radians(rollOffset))) + (cameraUp * sinf(glm::radians(rollOffset))));
+
+	cameraUp = glm::cross(cameraRight, cameraFront);
 }
