@@ -190,6 +190,9 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingCamera.cpp" />
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingFPSCamera.cpp" />
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Cameras\Camera.cpp" />
     <ClCompile Include="src\Lessons\CameraLesson\CameraLesson.cpp" />
     <ClCompile Include="src\OpenGLUtils\Shapes\Cube.cpp" />
     <ClCompile Include="src\Lessons\CoordinateSystems\CoordinateSystems.cpp" />
@@ -212,6 +215,9 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingCamera.h" />
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingFPSCamera.h" />
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Cameras\Camera.h" />
     <ClInclude Include="src\Lessons\CameraLesson\CameraLesson.h" />
     <ClInclude Include="src\OpenGLUtils\Shapes\Cube.h" />
     <ClInclude Include="src\Lessons\CoordinateSystems\CoordinateSystems.h" />

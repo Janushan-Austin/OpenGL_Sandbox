@@ -78,6 +78,15 @@
     <ClCompile Include="src\OpenGLUtils\UtilFunctions\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Cameras\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingFPSCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -126,6 +135,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGLUtils\UtilFunctions\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Cameras\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingFPSCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
