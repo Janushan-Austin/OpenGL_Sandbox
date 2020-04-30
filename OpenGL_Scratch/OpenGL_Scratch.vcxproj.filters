@@ -93,6 +93,12 @@
     <ClCompile Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Lighting\PhongLightingLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="res\shaders\Lighting\Phong\PhongShadingView.vert">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -158,6 +164,9 @@
     <ClInclude Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lessons\Lighting\PhongLightingLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
@@ -178,5 +187,8 @@
     <None Include="res\shaders\Lighting\SimpleColorLighting.frag" />
     <None Include="res\shaders\Lighting\SimpleColorLighting.vert" />
     <None Include="res\shaders\Lighting\SimpleLightSource.vert" />
+    <None Include="res\shaders\Lighting\Phong\PhongShadingWorld.frag" />
+    <None Include="res\shaders\Lighting\Phong\PhongShadingWorld.vert" />
+    <None Include="res\shaders\Lighting\Phong\PhongShadingView.frag" />
   </ItemGroup>
 </Project>
