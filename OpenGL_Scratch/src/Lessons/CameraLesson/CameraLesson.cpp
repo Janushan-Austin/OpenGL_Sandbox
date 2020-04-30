@@ -1,36 +1,36 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-static struct MouseGLCallbackWrapper {
-	static Camera* camera;
-	static int lastX, lastY;
-	static bool firstMouseMove;
-
-	static void mouse_Movement_Callback(GLFWwindow* window, double xPos, double yPos) {
-		if (camera != NULL) {
-			if (firstMouseMove) {
-				lastX = xPos;
-				lastY = yPos;
-				firstMouseMove = false;
-			}
-
-			camera->ProcessMouseMovement((float)(xPos -lastX), (float)(yPos - lastY));
-
-			lastX = xPos;
-			lastY = yPos;
-		}
-	}
-
-	static void mouse_Scroll_Callback(GLFWwindow* window, double xOffset, double yOffset) {
-		if (camera != NULL) {
-			camera->ProcessMouseScroll((float)yOffset);
-		}
-	}
-};
-Camera* MouseGLCallbackWrapper::camera = NULL;
-int MouseGLCallbackWrapper::lastX = 0;
-int MouseGLCallbackWrapper::lastY = 0;
-bool MouseGLCallbackWrapper::firstMouseMove = true;
+//static struct MouseGLCallbackWrapper {
+//	static Camera* camera;
+//	static int lastX, lastY;
+//	static bool firstMouseMove;
+//
+//	static void mouse_Movement_Callback(GLFWwindow* window, double xPos, double yPos) {
+//		if (camera != NULL) {
+//			if (firstMouseMove) {
+//				lastX = xPos;
+//				lastY = yPos;
+//				firstMouseMove = false;
+//			}
+//
+//			camera->ProcessMouseMovement((float)(xPos -lastX), (float)(yPos - lastY));
+//
+//			lastX = xPos;
+//			lastY = yPos;
+//		}
+//	}
+//
+//	static void mouse_Scroll_Callback(GLFWwindow* window, double xOffset, double yOffset) {
+//		if (camera != NULL) {
+//			camera->ProcessMouseScroll((float)yOffset);
+//		}
+//	}
+//};
+//Camera* MouseGLCallbackWrapper::camera = NULL;
+//int MouseGLCallbackWrapper::lastX = 0;
+//int MouseGLCallbackWrapper::lastY = 0;
+//bool MouseGLCallbackWrapper::firstMouseMove = true;
 
 glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::vec3 up) {
 	glm::vec3 cameraForward = glm::normalize(cameraPos - cameraTarget);

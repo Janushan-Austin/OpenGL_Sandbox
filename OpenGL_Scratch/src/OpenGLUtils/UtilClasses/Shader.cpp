@@ -83,6 +83,10 @@ ShaderProgramSource Shader::ParseShader(const std::string& shaderFilePath, shade
 	std::stringstream ss[2];
 	std::string line = "";
 
+	if (!shaderFile.is_open()) {
+		std::cout << "SHADER FILE: " << shaderFilePath << " FAILED TO OPEN\n";
+	}
+
 	shaderType type = initialType;
 
 	while (std::getline(shaderFile, line)) {

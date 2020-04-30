@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	CameraLesson();
+	SimpleColorLighting();
 	return 0;
 }

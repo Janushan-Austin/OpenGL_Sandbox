@@ -87,6 +87,12 @@
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -146,6 +152,12 @@
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Cameras\FlyingCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
@@ -162,5 +174,9 @@
     <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.frag" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.vert" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\MVP.vert" />
+    <None Include="res\shaders\Lighting\SimpleLightSource.frag" />
+    <None Include="res\shaders\Lighting\SimpleColorLighting.frag" />
+    <None Include="res\shaders\Lighting\SimpleColorLighting.vert" />
+    <None Include="res\shaders\Lighting\SimpleLightSource.vert" />
   </ItemGroup>
 </Project>
