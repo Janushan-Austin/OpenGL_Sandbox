@@ -1,10 +1,34 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
+//simple implementation of C# event type
+template <class type, class ...types>
+class Event {
+public:
+	typedef type(*eventFunctype)(types...);
+
+	eventFunctype* eventSubcribers;
+
+	Event() {
+		eventSubcribers = new eventFunctype[10];
+	}
+
+};
+
+void foo(int i, short z) {
+	std::cout << "we made it to foo: " << i << "\n";
+}
+
 // Lesson Getting Familar with Shaders and creating a shader class
 int PhongLightingLesson() {
 	//create a callback wrapper object to hold an instance of our camera to dispatch camera related events
 	MouseGLCallbackWrapper cameraMouseCallbackWrapper;
+
+	Event<void, int, short> events;
+	events.eventSubcribers[0] = &foo;
+
+	events.eventSubcribers[0](5, 6);
+	
 
 	InitGLFW(3, 3);
 
