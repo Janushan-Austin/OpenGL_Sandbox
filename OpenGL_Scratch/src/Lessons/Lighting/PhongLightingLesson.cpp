@@ -171,9 +171,9 @@ int PhongLightingLesson() {
 		//set our shader program to be the active shader for OpenGL
 		lightingShader.Bind();
 
-		lightPos.x = cosf(glfwGetTime());
-		lightPos.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
-		lightPos.z = sinf(glfwGetTime());
+		//lightPos.x = cosf(glfwGetTime());
+		//lightPos.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
+		//lightPos.z = sinf(glfwGetTime());
 
 		view = fpsCamera.GenerateViewMatrix();
 

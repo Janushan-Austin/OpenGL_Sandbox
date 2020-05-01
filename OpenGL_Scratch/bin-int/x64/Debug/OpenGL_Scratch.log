@@ -3,9 +3,6 @@
 c:\dev\opengl_scratch\opengl_scratch\src\lessons\lighting\phonglightinglesson.cpp(48): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\dev\opengl_scratch\opengl_scratch\src\lessons\lighting\phonglightinglesson.cpp(161): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\dev\opengl_scratch\opengl_scratch\src\lessons\lighting\phonglightinglesson.cpp(162): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\lighting\phonglightinglesson.cpp(174): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\lighting\phonglightinglesson.cpp(175): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_scratch\src\lessons\lighting\phonglightinglesson.cpp(176): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Scratch\bin\x64\Debug\OpenGL_Scratch.exe
   copy res folder to output
   24 File(s) copied
