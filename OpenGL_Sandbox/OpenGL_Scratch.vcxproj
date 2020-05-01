@@ -238,6 +238,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\OpenGLUtils\UtilFunctions\stb_Image_helpers.cpp">
       <FileType>CppHeader</FileType>
     </ClCompile>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Event\Event.h" />
     <ClInclude Include="src\OpenGLUtils\UtilFunctions\Input.h" />
     <ClInclude Include="src\OpenGLUtils\UtilFunctions\stb_Image_helpers.h" />
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h" />
