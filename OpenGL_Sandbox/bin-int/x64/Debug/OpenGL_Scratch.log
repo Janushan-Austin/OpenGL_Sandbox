@@ -1,0 +1,58 @@
+﻿  Creating master header files
+  PhongLightingLesson.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(48): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(161): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(162): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  SimpleColorLighting.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(48): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(158): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(159): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(172): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(173): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  MouseGLCallbackWrapper.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\utilclasses\callbackwrappers\mouseglcallbackwrapper.cpp(11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\utilclasses\callbackwrappers\mouseglcallbackwrapper.cpp(12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\utilclasses\callbackwrappers\mouseglcallbackwrapper.cpp(18): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\utilclasses\callbackwrappers\mouseglcallbackwrapper.cpp(19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  FlyingCamera.cpp
+  FlyingFPSCamera.cpp
+  Camera.cpp
+  CameraLesson.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(248): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(252): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(253): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(269): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(270): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Cube.cpp
+  CoordinateSystems.cpp
+  ShaderLessonEx1.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\shaders\exercises\ex1\shaderlessonex1.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  ShaderLessonEx2.cpp
+  ShaderLessonEx3.cpp
+  ShaderLesson.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\shaders\shaderlesson.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  TexturesLesson.cpp
+  TransformationsLesson.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\transformationslesson\transformationslesson.cpp(133): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Shader.cpp
+  Application.cpp
+  HelloTriangleEx1.cpp
+  HelloTriangleEx2.cpp
+  HelloTriangleEx3.cpp
+  Generating Code...
+  Compiling...
+  HelloTriangle.cpp
+  CallBackFunctions.cpp
+  Input.cpp
+  OpenGLHelpers.cpp
+  stb_image.cpp
+  stb_Image_helpers.cpp
+  Generating Code...
+  glad.c
+  OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Sandbox\bin\x64\Debug\OpenGL_Sandbox.exe
+  copy res folder to output
+  24 File(s) copied
