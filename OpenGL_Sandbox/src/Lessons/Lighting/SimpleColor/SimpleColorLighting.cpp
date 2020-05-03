@@ -5,8 +5,12 @@
 //and each new lesson compilation unit requires the same variables and methods but the linker
 //wants each compilation unit to have its own set of gloabls so there are no multiply defined
 //variables and functions
+static glm::mat4 projection;
+
 static glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
-static FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), 1920, 1080, 90.0f, -90.0f);
+static const int initialScreenWidth = 2560;
+static const int initialScreenHeight = 1440;
+static FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), initialScreenWidth, initialScreenHeight, 90.0f, -90.0f);
 static bool firstMouseMove = true;
 static double lastX, lastY;
 
@@ -36,13 +40,16 @@ static void mouseScrollEventCallback(GLFWwindow* window, double xOffset, double 
 int SimpleColorLighting() {
 	//setup callback function events
 	framebufferResizeEvent += &framebufferResizeEventCallback;
+	framebufferResizeEvent += [](GLFWwindow* window, int width, int height) {projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)width, (float)height, 0.1f, 100.0f); };
 	mouseMovementEvent += &mouseMovementEventCallback;
 	mouseScrollEvent += mouseScrollEventCallback;
 
 	InitGLFW(3, 3);
 
+	
+
 	//Create a window for glfw
-	GLFWwindow* window = glfwCreateWindow(1920, 1080, "LearnOpenGL Cameras", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(initialScreenWidth, initialScreenHeight, "LearnOpenGL Cameras", NULL, NULL);
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window\n";
 		glfwTerminate();
@@ -50,9 +57,9 @@ int SimpleColorLighting() {
 	}
 	else {
 		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, framebufferResizeEventCallback);
-		glfwSetCursorPosCallback(window, mouseMovementEventCallback);
-		glfwSetScrollCallback(window, mouseScrollEventCallback);
+		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+		glfwSetCursorPosCallback(window, mouse_Movement_Callback);
+		glfwSetScrollCallback(window, mouse_Scroll_Callback);
 	}
 
 	//Initialize GLAD (load all OpenGL function pointers)
@@ -71,6 +78,9 @@ int SimpleColorLighting() {
 	Shader lightingShader("res/shaders/Lighting/SimpleColorLighting.vert", "res/shaders/Lighting/SimpleColorLighting.frag");
 	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
 
+	
+	
+
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();
 
@@ -80,7 +90,7 @@ int SimpleColorLighting() {
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightScale(0.2f, 0.2f, 0.2f);
 
-	glm::mat4 projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), 1920.0f, 1080.0f, 0.1f, 100.0f);
+	projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
 	glm::mat4 view;
 
 	//unit cube not using index buffering

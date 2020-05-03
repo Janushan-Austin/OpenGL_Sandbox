@@ -1,15 +1,10 @@
 ﻿  Creating master header files
-  PhongLightingLesson.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(72): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(187): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(188): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   SimpleColorLighting.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(75): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(185): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(186): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(199): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(200): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(85): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(195): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(196): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(209): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(210): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Sandbox\bin\x64\Debug\OpenGL_Sandbox.exe
   copy res folder to output
   24 File(s) copied
