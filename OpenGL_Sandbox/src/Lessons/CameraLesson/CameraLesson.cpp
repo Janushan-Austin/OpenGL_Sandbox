@@ -1,38 +1,38 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-//static struct MouseGLCallbackWrapper {
-//	static Camera* camera;
-//	static int lastX, lastY;
-//	static bool firstMouseMove;
-//
-//	static void mouse_Movement_Callback(GLFWwindow* window, double xPos, double yPos) {
-//		if (camera != NULL) {
-//			if (firstMouseMove) {
-//				lastX = xPos;
-//				lastY = yPos;
-//				firstMouseMove = false;
-//			}
-//
-//			camera->ProcessMouseMovement((float)(xPos -lastX), (float)(yPos - lastY));
-//
-//			lastX = xPos;
-//			lastY = yPos;
-//		}
-//	}
-//
-//	static void mouse_Scroll_Callback(GLFWwindow* window, double xOffset, double yOffset) {
-//		if (camera != NULL) {
-//			camera->ProcessMouseScroll((float)yOffset);
-//		}
-//	}
-//};
-//Camera* MouseGLCallbackWrapper::camera = NULL;
-//int MouseGLCallbackWrapper::lastX = 0;
-//int MouseGLCallbackWrapper::lastY = 0;
-//bool MouseGLCallbackWrapper::firstMouseMove = true;
+//these global variables and methods are static because they are needed for OpenGL callbacks
+//and each new lesson compilation unit requires the same variables and methods but the linker
+//wants each compilation unit to have its own set of gloabls so there are no multiply defined
+//variables and functions
+static glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
+static FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), 1920, 1080, 90.0f, -90.0f);
+static bool firstMouseMove = true;
+static double lastX, lastY;
 
-glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::vec3 up) {
+static void framebufferResizeEventCallback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+	fpsCamera.SetDimmensions(width, height);
+}
+
+static void mouseMovementEventCallback(GLFWwindow* window, double xPos, double yPos) {
+	if (firstMouseMove) {
+		lastX = xPos;
+		lastY = yPos;
+		firstMouseMove = false;
+	}
+
+	fpsCamera.ProcessMouseMovement((float)(xPos - lastX), (float)(yPos - lastY));
+
+	lastX = xPos;
+	lastY = yPos;
+}
+
+static void mouseScrollEventCallback(GLFWwindow* window, double xOffset, double yOffset) {
+	fpsCamera.ProcessMouseScroll((float)yOffset);
+}
+
+static glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::vec3 up) {
 	glm::vec3 cameraForward = glm::normalize(cameraPos - cameraTarget);
 	// point right hand fingers in direction of first vector then curl fingers towards other vector and thumb points in the direction the cross vector points
 	glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraForward)); 
@@ -49,9 +49,6 @@ glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::v
 
 // Lesson Getting Familar with Shaders and creating a shader class
 int CameraLesson() {
-	//create a callback wrapper object to hold an instance of our camera to dispatch camera related events
-	MouseGLCallbackWrapper cameraMouseCallbackWrapper;
-
 	InitGLFW(3, 3);
 
 	//Create a window for glfw
@@ -63,9 +60,9 @@ int CameraLesson() {
 	}
 	else {
 		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-		glfwSetCursorPosCallback(window, cameraMouseCallbackWrapper.mouse_Movement_Callback);
-		glfwSetScrollCallback(window, cameraMouseCallbackWrapper.mouse_Scroll_Callback);
+		glfwSetFramebufferSizeCallback(window, framebufferResizeEventCallback);
+		glfwSetCursorPosCallback(window, mouseMovementEventCallback);
+		glfwSetScrollCallback(window, mouseScrollEventCallback);
 	}
 
 	//Initialize GLAD (load all OpenGL function pointers)
@@ -234,15 +231,6 @@ int CameraLesson() {
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, textureSmileyFace);
 	shader.SetUniform1i("texture2", 1);
-
-	glm::vec3 cameraPos(0.0f);
-	glm::vec3 cameraFront(0.0f, 0.0f, -1.0f);
-	glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
-
-	FlyingFPSCamera fpsCamera(cameraPos,glm::vec3(0.0f, 1.0f, 0.0f), 800, 600,90.0f, -90.0f);
-	FlyingCamera flyingCamera(cameraPos, 800, 600, 90.0f, -90.0f);
-
-	cameraMouseCallbackWrapper.camera = &fpsCamera;
 
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();

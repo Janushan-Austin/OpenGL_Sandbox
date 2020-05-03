@@ -1,10 +1,43 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
+//these global variables and methods are static because they are needed for OpenGL callbacks
+//and each new lesson compilation unit requires the same variables and methods but the linker
+//wants each compilation unit to have its own set of gloabls so there are no multiply defined
+//variables and functions
+static glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
+static FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), 1920, 1080, 90.0f, -90.0f);
+static bool firstMouseMove = true;
+static double lastX, lastY;
+
+static void framebufferResizeEventCallback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+	fpsCamera.SetDimmensions(width, height);
+}
+
+static void mouseMovementEventCallback(GLFWwindow* window, double xPos, double yPos) {
+	if (firstMouseMove) {
+		lastX = xPos;
+		lastY = yPos;
+		firstMouseMove = false;
+	}
+
+	fpsCamera.ProcessMouseMovement((float)(xPos - lastX), (float)(yPos - lastY));
+
+	lastX = xPos;
+	lastY = yPos;
+}
+
+static void mouseScrollEventCallback(GLFWwindow* window, double xOffset, double yOffset) {
+	fpsCamera.ProcessMouseScroll((float)yOffset);
+}
+
 // Lesson Getting Familar with Shaders and creating a shader class
 int SimpleColorLighting() {
-	//create a callback wrapper object to hold an instance of our camera to dispatch camera related events
-	MouseGLCallbackWrapper cameraMouseCallbackWrapper;
+	//setup callback function events
+	framebufferResizeEvent += &framebufferResizeEventCallback;
+	mouseMovementEvent += &mouseMovementEventCallback;
+	mouseScrollEvent += mouseScrollEventCallback;
 
 	InitGLFW(3, 3);
 
@@ -17,9 +50,9 @@ int SimpleColorLighting() {
 	}
 	else {
 		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-		glfwSetCursorPosCallback(window, cameraMouseCallbackWrapper.mouse_Movement_Callback);
-		glfwSetScrollCallback(window, cameraMouseCallbackWrapper.mouse_Scroll_Callback);
+		glfwSetFramebufferSizeCallback(window, framebufferResizeEventCallback);
+		glfwSetCursorPosCallback(window, mouseMovementEventCallback);
+		glfwSetScrollCallback(window, mouseScrollEventCallback);
 	}
 
 	//Initialize GLAD (load all OpenGL function pointers)
@@ -37,12 +70,6 @@ int SimpleColorLighting() {
 	//Declare and compile shaders
 	Shader lightingShader("res/shaders/Lighting/SimpleColorLighting.vert", "res/shaders/Lighting/SimpleColorLighting.frag");
 	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
-
-	glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
-
-	FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), 1920, 1080, 90.0f, -90.0f);
-
-	cameraMouseCallbackWrapper.camera = &fpsCamera;
 
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();

@@ -25,3 +25,9 @@ glm::mat4 Camera::GenerateViewMatrix() {
 
 	return result;
 }
+
+void Camera::WindowResizeEvent(GLFWwindow * window, int width_, int height_)
+{
+	width = width_;
+	height = height_;
+}

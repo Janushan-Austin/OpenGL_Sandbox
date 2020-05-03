@@ -2,6 +2,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 enum class MovementDirection {
 	FORWARD,
@@ -38,6 +40,7 @@ public:
 	virtual void ProcessMouseMovement(float xOffset, float yOffset) =0;
 	virtual void ProcessKeyboardInput(MovementDirection direction, float deltaTime) = 0;
 	virtual void ProcessMouseScroll(float yOffset) =0;
+	virtual void WindowResizeEvent(GLFWwindow* window, int width, int height);
 protected:
 	glm::vec3 cameraPos, cameraFront, cameraRight, cameraUp;
 

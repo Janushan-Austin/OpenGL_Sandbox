@@ -1,23 +1,40 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
-#include "OpenGLUtils/UtilClasses/Event/Event.h"
 
-int foo(int i, double z) {
-	std::cout << "we made it to foo: " << i << " " << z <<"\n";
-	return z;
+
+//these global variables and methods are static because they are needed for OpenGL callbacks
+//and each new lesson compilation unit requires the same variables and methods but the linker
+//wants each compilation unit to have its own set of gloabls so there are no multiply defined
+//variables and functions
+static glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
+static FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), 1920, 1080, 90.0f, -90.0f);
+static bool firstMouseMove = true;
+static double lastX, lastY;
+
+static void framebufferResizeEventCallback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+	fpsCamera.SetDimmensions(width, height);
+}
+
+static void mouseMovementEventCallback(GLFWwindow* window, double xPos, double yPos) {
+	if (firstMouseMove) {
+		lastX = xPos;
+		lastY = yPos;
+		firstMouseMove = false;
+	}
+
+	fpsCamera.ProcessMouseMovement((float)(xPos - lastX), (float)(yPos - lastY));
+
+	lastX = xPos;
+	lastY = yPos;
+}
+
+static void mouseScrollEventCallback(GLFWwindow* window, double xOffset, double yOffset) {
+		fpsCamera.ProcessMouseScroll((float)yOffset);
 }
 
 // Lesson Getting Familar with Shaders and creating a shader class
 int PhongLightingLesson() {
-	//create a callback wrapper object to hold an instance of our camera to dispatch camera related events
-	MouseGLCallbackWrapper cameraMouseCallbackWrapper;
-
-	Event<int, int, double> event;
-	event += &foo;
-
-	event(5, 0.0);
-	
-
 	InitGLFW(3, 3);
 
 	//Create a window for glfw
@@ -29,9 +46,10 @@ int PhongLightingLesson() {
 	}
 	else {
 		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-		glfwSetCursorPosCallback(window, cameraMouseCallbackWrapper.mouse_Movement_Callback);
-		glfwSetScrollCallback(window, cameraMouseCallbackWrapper.mouse_Scroll_Callback);
+		//setup necessary callback functions
+		glfwSetFramebufferSizeCallback(window, framebufferResizeEventCallback);
+		glfwSetCursorPosCallback(window, mouseMovementEventCallback);
+		glfwSetScrollCallback(window, mouseScrollEventCallback);
 	}
 
 	//Initialize GLAD (load all OpenGL function pointers)
@@ -50,12 +68,6 @@ int PhongLightingLesson() {
 	Shader lightingShader("res/shaders/Lighting/Phong/PhongShadingWorld.vert", "res/shaders/Lighting/Phong/PhongShadingWorld.frag");
 	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
 
-	glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
-
-	FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), 1920, 1080, 90.0f, -90.0f);
-
-	cameraMouseCallbackWrapper.camera = &fpsCamera;
-
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();
 
@@ -65,7 +77,9 @@ int PhongLightingLesson() {
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightScale(0.2f, 0.2f, 0.2f);
 
-	glm::mat4 projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), 1920.0f, 1080.0f, 0.1f, 100.0f);
+	float test = (float)fpsCamera.Width();
+
+	glm::mat4 projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
 	glm::mat4 view;
 
 	//unit cube not using index buffering with normals for each vertex
@@ -145,7 +159,7 @@ int PhongLightingLesson() {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)(3*sizeof(vertices[0])));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)(3 * sizeof(vertices[0])));
 	glEnableVertexAttribArray(1);
 
 	//creating a second Vertex Array object specificly for our light source

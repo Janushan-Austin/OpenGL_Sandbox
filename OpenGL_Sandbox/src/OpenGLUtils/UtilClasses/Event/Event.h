@@ -1,17 +1,20 @@
 #pragma once
+//included for debugging reasons
+#include <iostream>
+
 
 //simple implementation of C# event type
-template <class type, class ...types>
+template <class returnType, class ...params>
 class Event {
 public:
-	typedef type(*eventFuncType)(types...);
+	typedef returnType(*eventFuncType)(params...);
 
 	Event() {
 		Size = 10;
 		NumSubscribers = 0;
-		NumParams = sizeof...(types);
+		NumParams = sizeof...(params);
 		eventSubcribers = new eventFuncType[Size];
-		std::cout << sizeof...(types) << std::endl;
+		std::cout << sizeof...(params) << std::endl;
 	}
 
 	Event(const Event& eventRef) {
@@ -51,7 +54,7 @@ public:
 		Size = NumSubscribers = 0;
 	}
 
-	const eventFuncType& operator +=(const eventFuncType func) {
+	const eventFuncType& operator +=(const eventFuncType& func) {
 		if (eventSubcribers == NULL && NumSubscribers == Size) {
 			Size *= 2;
 
@@ -65,14 +68,16 @@ public:
 			delete [] tempHolder;
 		}
 
-		eventSubcribers[NumSubscribers] = func;
-		NumSubscribers++;
+		if (Find(func) >= NumSubscribers) {
+			eventSubcribers[NumSubscribers] = func;
+			NumSubscribers++;
+		}
 
 		return func;
 	}
 
-	const eventFuncType& operator -=(eventFuncType func) {
-		for(int i = 0; i < NumSubscribers; i++) {
+	const eventFuncType& operator -=(const eventFuncType& func) {
+		for(unsigned int i = 0; i < NumSubscribers; i++) {
 			if (eventSubcribers[i] == func) {
 				NumSubscribers--;
 				eventSubcribers[i] = eventSubcribers[NumSubscribers];
@@ -83,13 +88,23 @@ public:
 		return func;
 	}
 
-	void Invoke(types... args) {
+	unsigned int Find(const eventFuncType& func) {
+		for (unsigned int i = 0; i < NumSubscribers; i++) {
+			if (eventSubcribers[i] == func) {
+				return i;
+			}
+		}
+
+		return NumSubscribers;
+	}
+
+	void Invoke(params... args) {
 		for (int i = 0; i < NumSubscribers; i++) {
 			eventSubcribers[i](args...);
 		}
 	}
 
-	void operator () (types... args) {
+	void operator () (params... args) {
 		for (int i = 0; i < NumSubscribers; i++) {
 			eventSubcribers[i](args...);
 		}
@@ -105,6 +120,7 @@ public:
 private:
 
 	eventFuncType* eventSubcribers;
+
 
 	unsigned int Size, NumSubscribers, NumParams;
 };

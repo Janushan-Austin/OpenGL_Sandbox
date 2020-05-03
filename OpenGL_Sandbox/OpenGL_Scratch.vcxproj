@@ -216,7 +216,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\Lessons\HelloTriangle\Exercises\Ex2\HelloTriangleEx2.cpp" />
     <ClCompile Include="src\Lessons\HelloTriangle\Exercises\Ex3\HelloTriangleEx3.cpp" />
     <ClCompile Include="src\Lessons\HelloTriangle\HelloTriangle.cpp" />
-    <ClCompile Include="src\OpenGLUtils\UtilFunctions\CallBackFunctions.cpp" />
+    <ClCompile Include="src\OpenGLUtils\Callbacks\CallBackFunctions.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilFunctions\Input.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilFunctions\OpenGLHelpers.cpp" />
     <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp" />
@@ -244,7 +244,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader.h" />
     <ClInclude Include="src\allLessons.h" />
     <ClInclude Include="src\Lessons\HelloTriangle\HelloTriangle.h" />
-    <ClInclude Include="src\OpenGLUtils\UtilFunctions\CallBackFunctions.h" />
+    <ClInclude Include="src\OpenGLUtils\Callbacks\CallBackFunctions.h" />
     <ClInclude Include="src\OpenGLUtils\UtilFunctions\OpenGLHelpers.h" />
     <ClInclude Include="src\OpenGLUtils\Includes\OpenGLIncludeHeaders.h" />
     <ClInclude Include="src\OpenGLUtils\OpenGLUtils.h" />
