@@ -7,42 +7,21 @@
 //variables and functions
 static glm::mat4 projection;
 
-static glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
-static const int initialScreenWidth = 2560;
-static const int initialScreenHeight = 1440;
-static FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), initialScreenWidth, initialScreenHeight, 90.0f, -90.0f);
-static bool firstMouseMove = true;
-static double lastX, lastY;
-
-static void framebufferResizeEventCallback(GLFWwindow* window, int width, int height) {
-	glViewport(0, 0, width, height);
-	fpsCamera.SetDimmensions(width, height);
-}
-
-static void mouseMovementEventCallback(GLFWwindow* window, double xPos, double yPos) {
-	if (firstMouseMove) {
-		lastX = xPos;
-		lastY = yPos;
-		firstMouseMove = false;
-	}
-
-	fpsCamera.ProcessMouseMovement((float)(xPos - lastX), (float)(yPos - lastY));
-
-	lastX = xPos;
-	lastY = yPos;
-}
-
-static void mouseScrollEventCallback(GLFWwindow* window, double xOffset, double yOffset) {
-	fpsCamera.ProcessMouseScroll((float)yOffset);
-}
-
 // Lesson Getting Familar with Shaders and creating a shader class
 int SimpleColorLighting() {
+	const int initialScreenWidth = 2560;
+	const int initialScreenHeight = 1440;
+
+	glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
+	FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), initialScreenWidth, initialScreenHeight, 90.0f, -90.0f);
+
 	//setup callback function events
-	framebufferResizeEvent += &framebufferResizeEventCallback;
-	framebufferResizeEvent += [](GLFWwindow* window, int width, int height) {projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)width, (float)height, 0.1f, 100.0f); };
-	mouseMovementEvent += &mouseMovementEventCallback;
-	mouseScrollEvent += mouseScrollEventCallback;
+	framebufferResizeEvent += &Camera::WindowResizeEvent;
+	framebufferResizeEvent += [](GLFWwindow* window, int width, int height) {
+		projection = glm::perspectiveFov(glm::radians(Camera::GetActiveCamera()->FOV()), (float)width, (float)height, 0.1f, 100.0f);
+	};
+	mouseMovementEvent += &Camera::MouseMovementEvent;
+	mouseScrollEvent += &Camera::MouseScrollEvent;
 
 	InitGLFW(3, 3);
 

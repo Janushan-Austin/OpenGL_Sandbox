@@ -22,6 +22,8 @@ const float CameraSpeed = 2.5f;
 class Camera
 {
 public:
+	
+
 	Camera(glm::vec3 pos = glm::vec3(0.0f), unsigned int width = 800, unsigned int height =600, float fov = 90.0f, float y = 0.0f, float p = 0.0f, float r = 0.0f);
 	virtual ~Camera();
 
@@ -40,7 +42,13 @@ public:
 	virtual void ProcessMouseMovement(float xOffset, float yOffset) =0;
 	virtual void ProcessKeyboardInput(MovementDirection direction, float deltaTime) = 0;
 	virtual void ProcessMouseScroll(float yOffset) =0;
-	virtual void WindowResizeEvent(GLFWwindow* window, int width, int height);
+	static void WindowResizeEvent(GLFWwindow* window, int width, int height);
+	static void MouseMovementEvent(GLFWwindow* window, double xPos, double yPos);
+	static void MouseScrollEvent(GLFWwindow* window, double xOffset, double yOffset);
+
+
+	static void SetActiveCamera(Camera* const camera);
+	static Camera* GetActiveCamera() { return ActiveCamera; }
 protected:
 	glm::vec3 cameraPos, cameraFront, cameraRight, cameraUp;
 
@@ -49,5 +57,12 @@ protected:
 	float yaw, pitch, roll;
 
 	float fov;
+
+	//used to keep track for the active camera's callback functions
+	static Camera* ActiveCamera;
+
+	//used for mouse movement callback for the activeCamera
+	bool firstMouseMove;
+	double lastX, lastY;
 };
 
