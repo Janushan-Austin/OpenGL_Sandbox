@@ -1,19 +1,26 @@
 #pragma once
 //included for debugging reasons
 #include <iostream>
+#include <functional>
 
 
 //simple implementation of C# event type
 template <class returnType, class ...params>
 class Event {
 public:
-	typedef returnType(*eventFuncType)(params...);
+	//typedef returnType(eventType)(params...);
+	typedef std::function<returnType(params...)> eventFuncType;
+
+	struct EventHandler {
+		eventFuncType func;
+		unsigned int handle;
+	};
 
 	Event() {
 		Size = 10;
 		NumSubscribers = 0;
 		NumParams = sizeof...(params);
-		eventSubcribers = new eventFuncType[Size];
+		eventSubcribers = new EventHandler[Size];
 		std::cout << sizeof...(params) << std::endl;
 	}
 
@@ -35,7 +42,7 @@ public:
 			Size = copyEvent.Size;
 			NumSubscribers = copyEvent.NumSubcribers;
 
-			eventSubcribers = new eventFuncType[Size];
+			eventSubcribers = new EventHandler[Size];
 
 			for (int i = 0; i < NumSubscribers; i++) {
 				eventSubcribers[i] = copy.eventSubcribers[i];
@@ -54,30 +61,31 @@ public:
 		Size = NumSubscribers = 0;
 	}
 
-	const eventFuncType& operator +=(const eventFuncType& func) {
-		if (eventSubcribers == NULL && NumSubscribers == Size) {
+	unsigned int operator +=(const eventFuncType& func) {
+		if (eventSubcribers == NULL || NumSubscribers == Size) {
 			Size *= 2;
 
-			eventFuncType* tempHolder = eventSubcribers;
-			eventSubcribers = new eventFuncType[Size];
+			EventHandler* tempHolder = eventSubcribers;
+			eventSubcribers = new EventHandler[Size];
 
 			for (int i = 0; NumSubscribers; i++) {
 				eventSubcribers = tempHolder;
 			}
 
-			delete [] tempHolder;
+			delete[] tempHolder;
 		}
 
-		if (Find(func) >= NumSubscribers) {
-			eventSubcribers[NumSubscribers] = func;
-			NumSubscribers++;
-		}
+		unsigned int handle = handleID;
+		handleID++;
+		eventSubcribers[NumSubscribers].func = func;
+		eventSubcribers[NumSubscribers].handle = handle;
+		NumSubscribers++;
 
-		return func;
+		return handle;
 	}
 
 	const eventFuncType& operator -=(const eventFuncType& func) {
-		for(unsigned int i = 0; i < NumSubscribers; i++) {
+		for (unsigned int i = 0; i < NumSubscribers; i++) {
 			if (eventSubcribers[i] == func) {
 				NumSubscribers--;
 				eventSubcribers[i] = eventSubcribers[NumSubscribers];
@@ -88,39 +96,42 @@ public:
 		return func;
 	}
 
-	unsigned int Find(const eventFuncType& func) {
+	unsigned int Find(unsigned int handle) {
 		for (unsigned int i = 0; i < NumSubscribers; i++) {
-			if (eventSubcribers[i] == func) {
+			if (eventSubcribers[i].handle == handle) {
 				return i;
 			}
 		}
-
 		return NumSubscribers;
 	}
 
 	void Invoke(params... args) {
 		for (int i = 0; i < NumSubscribers; i++) {
-			eventSubcribers[i](args...);
+			eventSubcribers[i].func(args...);
 		}
 	}
 
 	void operator () (params... args) {
 		for (int i = 0; i < NumSubscribers; i++) {
-			eventSubcribers[i](args...);
+			eventSubcribers[i].func(args...);
 		}
 	}
 
 	eventFuncType& operator[](int index) {
 		if (index < NumSubscribers) {
-			return eventSubcribers[index];
+			return eventSubcribers[index].func;
 		}
 		return nullptr;
 	}
 
 private:
 
-	eventFuncType* eventSubcribers;
-
+	EventHandler* eventSubcribers;
 
 	unsigned int Size, NumSubscribers, NumParams;
+
+	static unsigned int handleID;
 };
+
+template <class returnType, class ...params>
+unsigned int Event<returnType, params ...>::handleID = 0;
