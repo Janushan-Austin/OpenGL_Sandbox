@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	MaterialLesson();
+	LightingMapLesson();
 	return 0;
 }

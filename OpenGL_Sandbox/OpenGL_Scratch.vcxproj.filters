@@ -99,7 +99,7 @@
     <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="res\shaders\Lighting\Phong\Phong-Material.vert">
+    <ClCompile Include="src\Lessons\Lighting\Material\LightingMapLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,6 +176,9 @@
     <ClInclude Include="src\Lessons\Lighting\Material\MaterialLesson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lessons\Lighting\Material\lightingMapLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
@@ -201,5 +204,7 @@
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.frag" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.vert" />
     <None Include="res\shaders\Lighting\Phong\Phong-Material.frag" />
+    <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.frag" />
+    <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.vert" />
   </ItemGroup>
 </Project>

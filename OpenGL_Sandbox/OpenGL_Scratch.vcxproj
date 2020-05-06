@@ -191,6 +191,8 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.frag" />
+    <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.vert" />
     <None Include="res\shaders\Lighting\Phong\Phong-Material.frag" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.vert">
       <FileType>CppCode</FileType>
@@ -199,9 +201,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </None>
-    <None Include="res\shaders\Lighting\Phong\Phong-Material.vert">
-      <FileType>CppCode</FileType>
-    </None>
+    <ClCompile Include="src\Lessons\Lighting\Material\LightingMapLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\PhongLightingLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.cpp" />
@@ -231,6 +231,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Lessons\Lighting\Material\lightingMapLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\Material\MaterialLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\PhongLightingLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.h" />
