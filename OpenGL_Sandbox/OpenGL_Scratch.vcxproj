@@ -191,7 +191,15 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="res\shaders\Lighting\Phong\Phong-Material.frag" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.vert">
+      <FileType>CppCode</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </None>
+    <None Include="res\shaders\Lighting\Phong\Phong-Material.vert">
       <FileType>CppCode</FileType>
     </None>
     <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp" />

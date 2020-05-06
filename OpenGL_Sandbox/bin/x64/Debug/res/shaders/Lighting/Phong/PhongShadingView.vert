@@ -5,7 +5,7 @@ layout(location = 1) in vec3 vNormal;
 
 uniform mat4 model, view, projection;
 
-uniform vec3 worldLightPos;
+uniform vec3 worldLightPos = vec3(0.0, 0.0, 0.0);
 
 out vec3 fNormal;
 out vec3 fPos;

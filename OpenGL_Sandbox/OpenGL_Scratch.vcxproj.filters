@@ -99,6 +99,9 @@
     <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="res\shaders\Lighting\Phong\Phong-Material.vert">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -197,5 +200,6 @@
     <None Include="res\shaders\Lighting\Phong\PhongShadingWorld.vert" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.frag" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.vert" />
+    <None Include="res\shaders\Lighting\Phong\Phong-Material.frag" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,8 @@
 
 
 
-// Lesson Getting Familar with Shaders and creating a shader class
+// Lesson Getting Familar with using lighting materials
+//still a wip
 int MaterialLesson() {
 	const int initialScreenWidth = 2560;
 	const int initialScreenHeight = 1440;
@@ -60,7 +61,7 @@ int MaterialLesson() {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	//Declare and compile shaders
-	Shader lightingShader("res/shaders/Lighting/Phong/PhongShadingWorld.vert", "res/shaders/Lighting/Phong/PhongShadingWorld.frag");
+	Shader lightingShader("res/shaders/Lighting/Phong/Phong-Material.vert", "res/shaders/Lighting/Phong/Phong-Material.frag");
 	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
 
 	float deltaTime = 0;
@@ -202,11 +203,17 @@ int MaterialLesson() {
 
 		lightingShader.SetUniformMat4("view", view);
 		lightingShader.SetUniformMat4("projection", projection);
-		lightingShader.SetUniform3f("objectColor", objectColor.x, objectColor.y, objectColor.z);
-		lightingShader.SetUniform3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
-		//lightingShader.SetUniform3f("worldLightPos", lightPos.x, lightPos.y, lightPos.z);
-		lightingShader.SetUniform3f("lightColor", lightColor.x, lightColor.y, lightColor.z);
-		lightingShader.SetUniform3f("viewPos", fpsCamera.Position().x, fpsCamera.Position().y, fpsCamera.Position().z);
+		lightingShader.SetUniformVec3("objectColor", objectColor);		
+		lightingShader.SetUniformVec3("lightPos", lightPos);
+		lightingShader.SetUniformVec3("worldLightPos", lightPos);
+		lightingShader.SetUniformVec3("lightColor", lightColor);
+		lightingShader.SetUniformVec3("viewPos", fpsCamera.Position());
+
+		//setting up the material uniform properties
+		lightingShader.SetUniformVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f));
+		lightingShader.SetUniformVec3("material.diffuse", glm::vec3(1.0f, 0.5f, 0.31f));
+		lightingShader.SetUniformVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+		lightingShader.SetUniform1f("material.shininess", 32.0f);
 
 
 
@@ -228,7 +235,7 @@ int MaterialLesson() {
 		lampShader.Bind();
 		lampShader.SetUniformMat4("view", view);
 		lampShader.SetUniformMat4("projection", projection);
-		lampShader.SetUniform3f("lightColor", lightColor.x, lightColor.y, lightColor.z);
+		lampShader.SetUniformVec3("lightColor", lightColor);
 
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), lightPos);
 		model = glm::scale(model, lightScale);

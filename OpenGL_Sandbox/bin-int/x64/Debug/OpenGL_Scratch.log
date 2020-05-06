@@ -1,48 +1,8 @@
 ﻿  Creating master header files
   MaterialLesson.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(67): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(182): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(68): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(183): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  PhongLightingLesson.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(64): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(178): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\phonglightinglesson.cpp(179): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  SimpleColorLighting.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(66): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(175): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(176): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(189): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\simplecolor\simplecolorlighting.cpp(190): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  CameraLesson.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(226): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(230): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(231): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(247): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\cameralesson\cameralesson.cpp(248): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  CoordinateSystems.cpp
-  ShaderLessonEx1.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\shaders\exercises\ex1\shaderlessonex1.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  ShaderLessonEx2.cpp
-  ShaderLessonEx3.cpp
-  ShaderLesson.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\shaders\shaderlesson.cpp(89): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  TexturesLesson.cpp
-  TransformationsLesson.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\transformationslesson\transformationslesson.cpp(133): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  HelloTriangleEx1.cpp
-  HelloTriangleEx2.cpp
-  HelloTriangleEx3.cpp
-  HelloTriangle.cpp
-  CallBackFunctions.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\utilclasses\event\event.h(115): warning C4018: '<': signed/unsigned mismatch
-  c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\utilclasses\event\event.h(114): note: while compiling class template member function 'void Event<void,GLFWwindow *,double,double>::operator ()(GLFWwindow *,double,double)'
-  c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\callbacks\callbackfunctions.cpp(14): note: see reference to function template instantiation 'void Event<void,GLFWwindow *,double,double>::operator ()(GLFWwindow *,double,double)' being compiled
-  c:\dev\opengl_scratch\opengl_sandbox\src\openglutils\callbacks\callbackfunctions.cpp(5): note: see reference to class template instantiation 'Event<void,GLFWwindow *,double,double>' being compiled
-  Generating Code...
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(184): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Sandbox\bin\x64\Debug\OpenGL_Sandbox.exe
   copy res folder to output
-  24 File(s) copied
+  26 File(s) copied
