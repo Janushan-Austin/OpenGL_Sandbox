@@ -1,8 +1,11 @@
 ﻿  Creating master header files
   MaterialLesson.cpp
 c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(68): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(183): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(184): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(181): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(182): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(198): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(199): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\materiallesson.cpp(200): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Sandbox\bin\x64\Debug\OpenGL_Sandbox.exe
   copy res folder to output
   26 File(s) copied

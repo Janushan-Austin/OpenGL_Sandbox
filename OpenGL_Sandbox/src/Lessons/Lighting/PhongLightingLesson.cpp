@@ -198,11 +198,11 @@ int PhongLightingLesson() {
 
 		lightingShader.SetUniformMat4("view", view);
 		lightingShader.SetUniformMat4("projection", projection);
-		lightingShader.SetUniform3f("objectColor", objectColor.x, objectColor.y, objectColor.z);
-		lightingShader.SetUniform3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
-		//lightingShader.SetUniform3f("worldLightPos", lightPos.x, lightPos.y, lightPos.z);
-		lightingShader.SetUniform3f("lightColor", lightColor.x, lightColor.y, lightColor.z);
-		lightingShader.SetUniform3f("viewPos", fpsCamera.Position().x, fpsCamera.Position().y, fpsCamera.Position().z);
+		lightingShader.SetUniformVec3("objectColor", objectColor);
+		lightingShader.SetUniformVec3("lightPos", lightPos);
+		//lightingShader.SetUniformVec3("worldLightPos", lightPos);
+		lightingShader.SetUniformVec3("lightColor", lightColor);
+		lightingShader.SetUniformVec3("viewPos", fpsCamera.Position());
 
 
 

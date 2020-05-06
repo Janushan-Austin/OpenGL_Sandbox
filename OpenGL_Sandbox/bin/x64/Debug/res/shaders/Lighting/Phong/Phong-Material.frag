@@ -1,40 +1,41 @@
 #version 330 core
 
-struct Material{
+struct MaterialProperties{
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
 	float shininess;
 };
 
+struct LightProperties{
+	vec3 position;
+
+	vec3 ambientStrength;
+	vec3 diffuseStrength;
+	vec3 specularStrength;
+};
+
 in vec3 fNormal;
 in vec3 fPos;
 
-uniform vec3 lightPos = vec3(0.0);
-uniform vec3 lightColor = vec3(1.0);
-uniform float ambientStrength = 0.1;
-
-uniform Material material;
-
-uniform vec3 objectColor = vec3(1.0);
+uniform MaterialProperties material;
+uniform LightProperties light;
 
 uniform vec3 viewPos  = vec3(0.0);
-
-uniform float specularStrength = 0.5;
 
 out vec4 FragColor;
 
 void main(){
 	//calculate ambient lighting
-	vec3 ambientLight = lightColor * material.ambient;
+	vec3 ambientLight = light.ambientStrength * material.ambient;
 
 	//calculate diffuse lighting
 	vec3 normal = normalize(fNormal);
-	vec3 lightDir = normalize(lightPos - fPos);
+	vec3 lightDir = normalize(light.position - fPos);
 
 	float lightToNormalTheta = max(dot(lightDir, normal), 0.0);
 
-	vec3 diffuseLight = (material.diffuse * lightToNormalTheta) * lightColor;
+	vec3 diffuseLight = (material.diffuse * lightToNormalTheta) * light.diffuseStrength;
 
 	//calculate specular lighting
 	vec3 viewDir = normalize(viewPos - fPos);
@@ -42,9 +43,9 @@ void main(){
 	
 	float specPow = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 
-	vec3 specularLight = specPow * material.specular * lightColor;
+	vec3 specularLight = specPow * material.specular * light.specularStrength;
 
-	vec3 result = (ambientLight + diffuseLight + specularLight) * objectColor;
+	vec3 result = ambientLight + diffuseLight + specularLight;
 
 	FragColor = vec4(result, 1.0);
 }

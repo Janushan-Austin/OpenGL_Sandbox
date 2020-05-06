@@ -67,8 +67,6 @@ int MaterialLesson() {
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();
 
-	glm::vec3 objectColor(1.0f, 0.5f, 0.31f);
-
 	glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightScale(0.2f, 0.2f, 0.2f);
@@ -197,16 +195,24 @@ int MaterialLesson() {
 		//lightPos.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
 		//lightPos.z = sinf(glfwGetTime());
 
+		lightColor.x = cosf(glfwGetTime());
+		lightColor.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
+		lightColor.z = sinf(glfwGetTime());
+
 		view = fpsCamera.GenerateViewMatrix();
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
 		lightingShader.SetUniformMat4("view", view);
 		lightingShader.SetUniformMat4("projection", projection);
-		lightingShader.SetUniformVec3("objectColor", objectColor);		
-		lightingShader.SetUniformVec3("lightPos", lightPos);
-		lightingShader.SetUniformVec3("worldLightPos", lightPos);
-		lightingShader.SetUniformVec3("lightColor", lightColor);
+
+		//setting up the light properties
+		lightingShader.SetUniformVec3("light.position", lightPos);
+		lightingShader.SetUniformVec3("light.ambientStrength", lightColor * glm::vec3(0.2f));
+		lightingShader.SetUniformVec3("light.diffuseStrength", lightColor * glm::vec3(0.8f));
+		lightingShader.SetUniformVec3("light.specularStrength", glm::vec3(1.0f));
+
+		//give the shader our camera's position
 		lightingShader.SetUniformVec3("viewPos", fpsCamera.Position());
 
 		//setting up the material uniform properties
