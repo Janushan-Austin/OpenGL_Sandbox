@@ -33,6 +33,7 @@ public:
 	void SetUniform3f(const std::string& name, float v0, float v1, float v2);
 	void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
 
+	void SetUniformVec3(const std::string& name, glm::vec3);
 	void SetUniformMat4(const std::string& name, glm::mat4 matrix);
 
 	int GetUniformLocation(const std::string& name);
