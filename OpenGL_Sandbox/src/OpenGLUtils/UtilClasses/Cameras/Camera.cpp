@@ -1,21 +1,13 @@
 #include "Camera.h"
-Camera* Camera::ActiveCamera = NULL;
 
 Camera::Camera(glm::vec3 pos, unsigned int w, unsigned int h, float fov, float y, float p, float r) : cameraPos(pos), width(w), height(h), yaw(y), pitch(p), roll(r), fov(fov), cameraFront(0.0f, 0.0f, -1.0f), cameraRight(1.0f, 0.0f, 0.0f), cameraUp(0.0f, 1.0f, 0.0f)
 {
-	if (ActiveCamera == NULL) {
-		ActiveCamera = this;
-		firstMouseMove = true;
-		lastX = 0;
-		lastY = 0;
-	}
+	lastX = 0;
+	lastY = 0;
 }
 
 Camera::~Camera()
 {
-	if (ActiveCamera == this) {
-		ActiveCamera = NULL;
-	}
 }
 
 glm::mat4 Camera::GenerateViewMatrix() {
@@ -38,41 +30,25 @@ glm::mat4 Camera::GenerateViewMatrix() {
 
 void Camera::WindowResizeEvent(GLFWwindow * window, int width_, int height_)
 {
-	if (ActiveCamera == NULL) {
-		return;
-	}
-	ActiveCamera->width = width_;
-	ActiveCamera->height = height_;
+	width = width_;
+	height = height_;
 }
 
 void Camera::MouseMovementEvent(GLFWwindow * window, double xPos, double yPos)
 {
-	if (ActiveCamera == NULL) {
-		return;
-	}
-	if (ActiveCamera->firstMouseMove) {
-		ActiveCamera->lastX = xPos;
-		ActiveCamera->lastY = yPos;
-		ActiveCamera->firstMouseMove = false;
+	if (firstMouseMove) {
+		lastX = xPos;
+		lastY = yPos;
+		firstMouseMove = false;
 	}
 
-	ActiveCamera->ProcessMouseMovement((float)(xPos - ActiveCamera->lastX), (float)(yPos - ActiveCamera->lastY));
+	ProcessMouseMovement((float)(xPos - lastX), (float)(yPos - lastY));
 
-	ActiveCamera->lastX = xPos;
-	ActiveCamera->lastY = yPos;
+	lastX = xPos;
+	lastY = yPos;
 }
 
 void Camera::MouseScrollEvent(GLFWwindow * window, double xOffset, double yOffset)
 {
-	if (ActiveCamera == NULL) {
-		return;
-	}
-	ActiveCamera->ProcessMouseScroll(yOffset);
-}
-
-//used for switching between different cameras if more than one exists within a scene
-void Camera::SetActiveCamera(Camera* const camera) 
-{
-	ActiveCamera = camera;
-	ActiveCamera->firstMouseMove = true;
+	ProcessMouseScroll(yOffset);
 }

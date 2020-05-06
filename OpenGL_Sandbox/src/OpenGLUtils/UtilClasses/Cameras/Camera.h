@@ -42,13 +42,10 @@ public:
 	virtual void ProcessMouseMovement(float xOffset, float yOffset) =0;
 	virtual void ProcessKeyboardInput(MovementDirection direction, float deltaTime) = 0;
 	virtual void ProcessMouseScroll(float yOffset) =0;
-	static void WindowResizeEvent(GLFWwindow* window, int width, int height);
-	static void MouseMovementEvent(GLFWwindow* window, double xPos, double yPos);
-	static void MouseScrollEvent(GLFWwindow* window, double xOffset, double yOffset);
+	void WindowResizeEvent(GLFWwindow* window, int width, int height);
+	void MouseMovementEvent(GLFWwindow* window, double xPos, double yPos);
+	void MouseScrollEvent(GLFWwindow* window, double xOffset, double yOffset);
 
-
-	static void SetActiveCamera(Camera* const camera);
-	static Camera* GetActiveCamera() { return ActiveCamera; }
 protected:
 	glm::vec3 cameraPos, cameraFront, cameraRight, cameraUp;
 
@@ -57,9 +54,6 @@ protected:
 	float yaw, pitch, roll;
 
 	float fov;
-
-	//used to keep track for the active camera's callback functions
-	static Camera* ActiveCamera;
 
 	//used for mouse movement callback for the activeCamera
 	bool firstMouseMove;
