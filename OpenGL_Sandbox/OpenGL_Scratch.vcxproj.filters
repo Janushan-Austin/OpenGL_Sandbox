@@ -96,6 +96,9 @@
     <ClCompile Include="src\OpenGLUtils\Callbacks\CallBackFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -165,6 +168,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGLUtils\Callbacks\CallBackFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lessons\Lighting\Material\MaterialLesson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

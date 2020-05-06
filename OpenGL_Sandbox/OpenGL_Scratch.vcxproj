@@ -194,6 +194,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.vert">
       <FileType>CppCode</FileType>
     </None>
+    <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\PhongLightingLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.cpp" />
@@ -222,6 +223,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Lessons\Lighting\Material\MaterialLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\PhongLightingLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.h" />
     <ClInclude Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.h" />

@@ -1,8 +1,12 @@
 #include <iostream>
+#include <functional>
 #include "OpenGLUtils/OpenGLUtils.h"
 
+
+
+
 // Lesson Getting Familar with Shaders and creating a shader class
-int SimpleColorLighting() {
+int MaterialLesson() {
 	const int initialScreenWidth = 2560;
 	const int initialScreenHeight = 1440;
 
@@ -14,7 +18,7 @@ int SimpleColorLighting() {
 
 	// setting up callback listeners since OpenGL allows for only one registered callback function at a time
 	framebufferResizeEvent += std::bind(&FlyingFPSCamera::WindowResizeEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-
+	
 	framebufferResizeEvent += [&projection, &fpsCamera](GLFWwindow* window, int width, int height) {
 		projection = (glm::mat4)glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)width, (float)height, 0.1f, 100.0f);
 	};
@@ -25,9 +29,8 @@ int SimpleColorLighting() {
 		projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
 	};
 
-	InitGLFW(3, 3);
 
-	
+	InitGLFW(3, 3);
 
 	//Create a window for glfw
 	GLFWwindow* window = glfwCreateWindow(initialScreenWidth, initialScreenHeight, "LearnOpenGL Cameras", NULL, NULL);
@@ -38,6 +41,7 @@ int SimpleColorLighting() {
 	}
 	else {
 		glfwMakeContextCurrent(window);
+		//setup necessary callback functions
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 		glfwSetCursorPosCallback(window, mouse_Movement_Callback);
 		glfwSetScrollCallback(window, mouse_Scroll_Callback);
@@ -56,11 +60,8 @@ int SimpleColorLighting() {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	//Declare and compile shaders
-	Shader lightingShader("res/shaders/Lighting/SimpleColorLighting.vert", "res/shaders/Lighting/SimpleColorLighting.frag");
+	Shader lightingShader("res/shaders/Lighting/Phong/PhongShadingWorld.vert", "res/shaders/Lighting/Phong/PhongShadingWorld.frag");
 	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
-
-	
-	
 
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();
@@ -71,51 +72,54 @@ int SimpleColorLighting() {
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightScale(0.2f, 0.2f, 0.2f);
 
+	float test = (float)fpsCamera.Width();
+
 	projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
+	
 
-	//unit cube not using index buffering
+	//unit cube not using index buffering with normals for each vertex
 	float vertices[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
 
 	//used for translating multiple cube objects into the world
@@ -144,11 +148,14 @@ int SimpleColorLighting() {
 
 	//Bind Vertex Buffer and pass data to GPU
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);	
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	//tell GPU how to process data in the array
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(vertices[0]), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)(3 * sizeof(vertices[0])));
+	glEnableVertexAttribArray(1);
 
 	//creating a second Vertex Array object specificly for our light source
 	unsigned int LightVAO = 0;
@@ -160,7 +167,7 @@ int SimpleColorLighting() {
 
 	//tell GPU how to process data in the array
 	//needs the same attributes on how to process the data inside the VBO
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(vertices[0]), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(vertices[0]), (void*)0);
 	glEnableVertexAttribArray(0);
 
 
@@ -185,9 +192,9 @@ int SimpleColorLighting() {
 		//set our shader program to be the active shader for OpenGL
 		lightingShader.Bind();
 
-		float radius = 10.0f;
-		float camX = sin(glfwGetTime()) * radius;
-		float camZ = cos(glfwGetTime()) * radius;
+		//lightPos.x = cosf(glfwGetTime());
+		//lightPos.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
+		//lightPos.z = sinf(glfwGetTime());
 
 		view = fpsCamera.GenerateViewMatrix();
 
@@ -196,7 +203,10 @@ int SimpleColorLighting() {
 		lightingShader.SetUniformMat4("view", view);
 		lightingShader.SetUniformMat4("projection", projection);
 		lightingShader.SetUniform3f("objectColor", objectColor.x, objectColor.y, objectColor.z);
+		lightingShader.SetUniform3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
+		//lightingShader.SetUniform3f("worldLightPos", lightPos.x, lightPos.y, lightPos.z);
 		lightingShader.SetUniform3f("lightColor", lightColor.x, lightColor.y, lightColor.z);
+		lightingShader.SetUniform3f("viewPos", fpsCamera.Position().x, fpsCamera.Position().y, fpsCamera.Position().z);
 
 
 
@@ -226,7 +236,7 @@ int SimpleColorLighting() {
 
 
 		glBindVertexArray(CubeVAO);
-		glDrawArrays(GL_TRIANGLES,0, 36);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
 

@@ -1,9 +1,6 @@
 #include <iostream>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-
-static glm::mat4 projection;
-
 static glm::mat4 CreateLookAtMatrix(glm::vec3 cameraPos, glm::vec3 cameraTarget, glm::vec3 up) {
 	glm::vec3 cameraForward = glm::normalize(cameraPos - cameraTarget);
 	// point right hand fingers in direction of first vector then curl fingers towards other vector and thumb points in the direction the cross vector points
@@ -24,16 +21,23 @@ int CameraLesson() {
 	const int initialScreenWidth = 2560;
 	const int initialScreenHeight = 1440;
 
+	glm::mat4 projection;
+
 	glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
 	FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), initialScreenWidth, initialScreenHeight, 90.0f, -90.0f);
 
-	//setup callback function events
-	framebufferResizeEvent += &Camera::WindowResizeEvent;
-	framebufferResizeEvent += [](GLFWwindow* window, int width, int height) {
-		projection = glm::perspectiveFov(glm::radians(Camera::GetActiveCamera()->FOV()), (float)width, (float)height, 0.1f, 100.0f);
+	// setting up callback listeners since OpenGL allows for only one registered callback function at a time
+	framebufferResizeEvent += std::bind(&FlyingFPSCamera::WindowResizeEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+
+	framebufferResizeEvent += [&projection, &fpsCamera](GLFWwindow* window, int width, int height) {
+		projection = (glm::mat4)glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)width, (float)height, 0.1f, 100.0f);
 	};
-	mouseMovementEvent += &Camera::MouseMovementEvent;
-	mouseScrollEvent += &Camera::MouseScrollEvent;
+
+	mouseMovementEvent += std::bind(&FlyingFPSCamera::MouseMovementEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	mouseScrollEvent += std::bind(&FlyingFPSCamera::MouseScrollEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	mouseScrollEvent += [&projection, &fpsCamera](GLFWwindow* window, double xOffset, double yOffset) {
+		projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
+	};
 
 	InitGLFW(3, 3);
 

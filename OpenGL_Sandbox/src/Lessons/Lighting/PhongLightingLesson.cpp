@@ -1,8 +1,6 @@
 #include <iostream>
+#include <functional>
 #include "OpenGLUtils/OpenGLUtils.h"
-
-
-static glm::mat4 projection;
 
 
 // Lesson Getting Familar with Shaders and creating a shader class
@@ -10,18 +8,23 @@ int PhongLightingLesson() {
 	const int initialScreenWidth = 2560;
 	const int initialScreenHeight = 1440;
 
+	glm::mat4 projection;
+	glm::mat4 view;
+
 	glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
 	FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), initialScreenWidth, initialScreenHeight, 90.0f, -90.0f);
 
+	// setting up callback listeners since OpenGL allows for only one registered callback function at a time
+	framebufferResizeEvent += std::bind(&FlyingFPSCamera::WindowResizeEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 
-	framebufferResizeEvent += &Camera::WindowResizeEvent;
-	framebufferResizeEvent += [](GLFWwindow* window, int width, int height) {
-		projection = glm::perspectiveFov(glm::radians(Camera::GetActiveCamera()->FOV()), (float)width, (float)height, 0.1f, 100.0f);
+	framebufferResizeEvent += [&projection, &fpsCamera](GLFWwindow* window, int width, int height) {
+		projection = (glm::mat4)glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)width, (float)height, 0.1f, 100.0f);
 	};
-	mouseMovementEvent += &Camera::MouseMovementEvent;
-	mouseScrollEvent += &Camera::MouseScrollEvent;
-	mouseScrollEvent += [](GLFWwindow* window, double xOffset, double yOffset) {
-		projection = glm::perspectiveFov(glm::radians(Camera::GetActiveCamera()->FOV()), (float)Camera::GetActiveCamera()->Width(), (float)Camera::GetActiveCamera()->Height(), 0.1f, 100.0f);
+
+	mouseMovementEvent += std::bind(&FlyingFPSCamera::MouseMovementEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	mouseScrollEvent += std::bind(&FlyingFPSCamera::MouseScrollEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	mouseScrollEvent += [&projection, &fpsCamera](GLFWwindow* window, double xOffset, double yOffset) {
+		projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
 	};
 
 	InitGLFW(3, 3);
@@ -69,7 +72,6 @@ int PhongLightingLesson() {
 	float test = (float)fpsCamera.Width();
 
 	projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
-	glm::mat4 view;
 
 	//unit cube not using index buffering with normals for each vertex
 	float vertices[] = {
