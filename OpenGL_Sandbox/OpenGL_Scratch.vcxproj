@@ -201,6 +201,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </None>
+    <ClCompile Include="src\Lessons\Lighting\LightCasters\LightCastersLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\Material\LightingMapLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\PhongLightingLesson.cpp" />
@@ -231,6 +232,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
     <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Lessons\Lighting\Lighting.h" />
     <ClInclude Include="src\Lessons\Lighting\Material\lightingMapLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\Material\MaterialLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\PhongLightingLesson.h" />

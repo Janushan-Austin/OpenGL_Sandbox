@@ -102,6 +102,9 @@
     <ClCompile Include="src\Lessons\Lighting\Material\LightingMapLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Lighting\LightCasters\LightCastersLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -177,6 +180,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\Lighting\Material\lightingMapLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lessons\Lighting\Lighting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

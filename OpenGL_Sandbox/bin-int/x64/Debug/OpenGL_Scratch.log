@@ -1,11 +1,11 @@
 ﻿  Creating master header files
-  LightingMapLesson.cpp
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\lightingmaplesson.cpp(68): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\lightingmaplesson.cpp(190): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\lightingmaplesson.cpp(191): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\lightingmaplesson.cpp(207): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\lightingmaplesson.cpp(208): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\material\lightingmaplesson.cpp(209): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  LightCastersLesson.cpp
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\lightcasters\lightcasterslesson.cpp(68): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\lightcasters\lightcasterslesson.cpp(190): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\lightcasters\lightcasterslesson.cpp(191): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\lightcasters\lightcasterslesson.cpp(207): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\lightcasters\lightcasterslesson.cpp(208): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\dev\opengl_scratch\opengl_sandbox\src\lessons\lighting\lightcasters\lightcasterslesson.cpp(209): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   OpenGL_Scratch.vcxproj -> C:\Dev\OpenGL_Scratch\OpenGL_Sandbox\bin\x64\Debug\OpenGL_Sandbox.exe
   copy res folder to output
   29 File(s) copied
