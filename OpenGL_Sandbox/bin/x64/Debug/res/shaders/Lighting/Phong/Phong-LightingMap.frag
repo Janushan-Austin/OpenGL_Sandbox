@@ -2,7 +2,7 @@
 
 struct MaterialProperties{
 	sampler2D diffuse;
-	vec3 specular;
+	sampler2D specular;
 	float shininess;
 };
 
@@ -43,7 +43,7 @@ void main(){
 	
 	float specPow = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 
-	vec3 specularLight = specPow * material.specular * light.specularStrength;
+	vec3 specularLight = specPow * texture(material.specular, fTexCoord).xyz * light.specularStrength;
 
 	vec3 result = ambientLight + diffuseLight + specularLight;
 
