@@ -62,7 +62,7 @@ int LightingMapLesson() {
 
 	//Declare and compile shaders
 	Shader lightingShader("res/shaders/Lighting/Phong/Phong-LightingMap.vert", "res/shaders/Lighting/Phong/Phong-LightingMap.frag");
-	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
+	Shader lampShader("res/shaders/Lighting/Simple/SimpleLightSource.vert", "res/shaders/Lighting/Simple/SimpleLightSource.frag");
 
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();

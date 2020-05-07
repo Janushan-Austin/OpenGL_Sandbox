@@ -61,8 +61,8 @@ int LightCastersLesson() {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	//Declare and compile shaders
-	Shader lightingShader("res/shaders/Lighting/Phong/Phong-LightingMap.vert", "res/shaders/Lighting/Phong/Phong-LightingMap.frag");
-	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
+	Shader lightingShader("res/shaders/Lighting/Phong/Phong-LightingMap.vert", "res/shaders/Lighting/LightCasters/PointLight.frag");
+	Shader lampShader("res/shaders/Lighting/Simple/SimpleLightSource.vert", "res/shaders/Lighting/Simple/SimpleLightSource.frag");
 
 	float deltaTime = 0;
 	float lastFrame = glfwGetTime();
@@ -204,9 +204,9 @@ int LightCastersLesson() {
 		//lightPos.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
 		//lightPos.z = sinf(glfwGetTime());
 
-		lightColor.x = cosf(glfwGetTime());
+		/*lightColor.x = cosf(glfwGetTime());
 		lightColor.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
-		lightColor.z = sinf(glfwGetTime());
+		lightColor.z = sinf(glfwGetTime());*/
 
 		view = fpsCamera.GenerateViewMatrix();
 
@@ -216,6 +216,16 @@ int LightCastersLesson() {
 		lightingShader.SetUniformMat4("projection", projection);
 
 		//setting up the light properties
+
+		 //used for direction light properties
+		//lightingShader.SetUniformVec3("light.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+
+		//used for point light properties
+		lightingShader.SetUniform1f("light.constant", 1.0f);
+		lightingShader.SetUniform1f("light.linear", 0.09f);
+		lightingShader.SetUniform1f("light.quadratic", 0.032f);
+
+		//setting up general light properties for the shader
 		lightingShader.SetUniformVec3("light.position", lightPos);
 		lightingShader.SetUniformVec3("light.ambientStrength", lightColor * glm::vec3(0.2f));
 		lightingShader.SetUniformVec3("light.diffuseStrength", lightColor * glm::vec3(0.8f));

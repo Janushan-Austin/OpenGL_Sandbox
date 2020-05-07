@@ -30,50 +30,120 @@ void Shader::UnBind() { glUseProgram(0); }
 
 void Shader::SetUniform1i(const std::string & name, int v0)
 {
-	glUniform1i(GetUniformLocation(name), v0);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform1i(GetUniformLocation(name), v0);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader "  << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniform2i(const std::string & name, int v0, int v1)
 {
-	glUniform2i(GetUniformLocation(name), v0, v1);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform2i(GetUniformLocation(name), v0, v1);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniform3i(const std::string & name, int v0, int v1, int v2)
 {
-	glUniform3i(GetUniformLocation(name), v0, v1, v2);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform3i(GetUniformLocation(name), v0, v1, v2);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniform4i(const std::string & name, int v0, int v1, int v2, int v3)
 {
-	glUniform4i(GetUniformLocation(name), v0, v1, v2, v3);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform4i(GetUniformLocation(name), v0, v1, v2, v3);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniform1f(const std::string & name, float v0)
 {
-	glUniform1f(GetUniformLocation(name), v0);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform1f(GetUniformLocation(name), v0);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniform2f(const std::string & name, float v0, float v1)
 {
-	glUniform2f(GetUniformLocation(name), v0, v1);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform2f(GetUniformLocation(name), v0, v1);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniform3f(const std::string & name, float v0, float v1, float v2)
 {
-	glUniform3f(GetUniformLocation(name), v0, v1, v2);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform3f(GetUniformLocation(name), v0, v1, v2);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniform4f(const std::string & name, float v0, float v1, float v2, float v3)
 {
-	glUniform4f(GetUniformLocation(name), v0, v1, v2, v3);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform4f(GetUniformLocation(name), v0, v1, v2, v3);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniformVec3(const std::string& name, glm::vec3 vector) {
-	glUniform3fv(GetUniformLocation(name), 1, &vector[0]);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniform3fv(GetUniformLocation(name), 1, &vector[0]);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 void Shader::SetUniformMat4(const std::string& name, glm::mat4 matrix) {
-	glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
+	int location = GetUniformLocation(name);
+	if (location >= 0)
+	{
+		glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
+	}
+	else {
+		std::cout << "uniform " << name << " in shader " << shaderID << " could not be found\n";
+	}
 }
 
 int Shader::GetUniformLocation(const std::string & name)

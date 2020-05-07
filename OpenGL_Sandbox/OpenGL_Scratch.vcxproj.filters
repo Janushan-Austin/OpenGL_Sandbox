@@ -201,10 +201,6 @@
     <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.frag" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.vert" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\MVP.vert" />
-    <None Include="res\shaders\Lighting\SimpleLightSource.frag" />
-    <None Include="res\shaders\Lighting\SimpleColorLighting.frag" />
-    <None Include="res\shaders\Lighting\SimpleColorLighting.vert" />
-    <None Include="res\shaders\Lighting\SimpleLightSource.vert" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingWorld.frag" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingWorld.vert" />
     <None Include="res\shaders\Lighting\Phong\PhongShadingView.frag" />
@@ -212,5 +208,11 @@
     <None Include="res\shaders\Lighting\Phong\Phong-Material.frag" />
     <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.frag" />
     <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.vert" />
+    <None Include="res\shaders\Lighting\Simple\SimpleColorLighting.frag" />
+    <None Include="res\shaders\Lighting\Simple\SimpleColorLighting.vert" />
+    <None Include="res\shaders\Lighting\Simple\SimpleLightSource.frag" />
+    <None Include="res\shaders\Lighting\Simple\SimpleLightSource.vert" />
+    <None Include="res\shaders\Lighting\LightCasters\DirectionLight.frag" />
+    <None Include="res\shaders\Lighting\LightCasters\PointLight.frag" />
   </ItemGroup>
 </Project>
