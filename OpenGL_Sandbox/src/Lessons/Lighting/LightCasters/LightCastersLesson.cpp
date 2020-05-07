@@ -16,6 +16,7 @@ int LightCastersLesson() {
 
 	glm::vec3 cameraPos(0.0f, 0.0f, 5.0f);
 	FlyingFPSCamera fpsCamera(cameraPos, glm::vec3(0.0f, 1.0f, 0.0f), initialScreenWidth, initialScreenHeight, 90.0f, -90.0f);
+	//FlyingCamera fpsCamera(cameraPos, initialScreenWidth, initialScreenHeight, 90.0f, -90.0f);
 
 	// setting up callback listeners since OpenGL allows for only one registered callback function at a time
 	framebufferResizeEvent += std::bind(&FlyingFPSCamera::WindowResizeEvent, &fpsCamera, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
@@ -61,7 +62,7 @@ int LightCastersLesson() {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	//Declare and compile shaders
-	Shader lightingShader("res/shaders/Lighting/Phong/Phong-LightingMap.vert", "res/shaders/Lighting/LightCasters/PointLight.frag");
+	Shader lightingShader("res/shaders/Lighting/Phong/Phong-LightingMap.vert", "res/shaders/Lighting/LightCasters/SpotLight.frag");
 	Shader lampShader("res/shaders/Lighting/Simple/SimpleLightSource.vert", "res/shaders/Lighting/Simple/SimpleLightSource.frag");
 
 	float deltaTime = 0;
@@ -217,19 +218,26 @@ int LightCastersLesson() {
 
 		//setting up the light properties
 
-		 //used for direction light properties
-		//lightingShader.SetUniformVec3("light.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
-
-		//used for point light properties
-		lightingShader.SetUniform1f("light.constant", 1.0f);
-		lightingShader.SetUniform1f("light.linear", 0.09f);
-		lightingShader.SetUniform1f("light.quadratic", 0.032f);
-
 		//setting up general light properties for the shader
 		lightingShader.SetUniformVec3("light.position", lightPos);
 		lightingShader.SetUniformVec3("light.ambientStrength", lightColor * glm::vec3(0.2f));
 		lightingShader.SetUniformVec3("light.diffuseStrength", lightColor * glm::vec3(0.8f));
 		lightingShader.SetUniformVec3("light.specularStrength", glm::vec3(1.0f));
+
+		//used for direction light properties
+		//lightingShader.SetUniformVec3("light.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+
+		//used for point light and spotlight intensity drop off properties
+		lightingShader.SetUniform1f("light.constant", 1.0f);
+		lightingShader.SetUniform1f("light.linear", 0.09f);
+		lightingShader.SetUniform1f("light.quadratic", 0.032f);
+
+		//used for spot light properties
+		lightingShader.SetUniformVec3("light.position", fpsCamera.Position());
+		lightingShader.SetUniformVec3("light.direction", fpsCamera.Front());
+		lightingShader.SetUniform1f("light.cutoff", glm::cos(glm::radians(12.5f)));
+		lightingShader.SetUniform1f("light.outerCutoff", glm::cos(glm::radians(50.5f)));
+		
 
 		//give the shader our camera's position
 		lightingShader.SetUniformVec3("viewPos", fpsCamera.Position());

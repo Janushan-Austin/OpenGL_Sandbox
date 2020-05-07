@@ -193,6 +193,7 @@ xcopy "$(ProjectDir)res" "$(OutDir)res" /E /Y /I /R /Q</Command>
   <ItemGroup>
     <None Include="res\shaders\Lighting\LightCasters\DirectionLight.frag" />
     <None Include="res\shaders\Lighting\LightCasters\PointLight.frag" />
+    <None Include="res\shaders\Lighting\LightCasters\SpotLight.frag" />
     <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.frag" />
     <None Include="res\shaders\Lighting\Phong\Phong-LightingMap.vert" />
     <None Include="res\shaders\Lighting\Phong\Phong-Material.frag" />
