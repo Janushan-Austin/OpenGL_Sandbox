@@ -2,9 +2,6 @@
 #include <functional>
 #include "OpenGLUtils/OpenGLUtils.h"
 
-
-
-
 // Lesson Getting Familar with using lighting materials
 //still a wip
 int MultipleLightSources() {
@@ -72,10 +69,7 @@ int MultipleLightSources() {
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightScale(0.2f, 0.2f, 0.2f);
 
-	float test = (float)fpsCamera.Width();
-
 	projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
-
 
 	//unit cube not using index buffering with normals for each vertex
 	float vertices[] = {
@@ -197,8 +191,8 @@ int MultipleLightSources() {
 		//check input
 		deltaTime = glfwGetTime() - lastFrame;
 		lastFrame = glfwGetTime();
+
 		processInput(window);
-		//processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
 		processCameraInput(window, fpsCamera, deltaTime);
 
 		//rendering commands here
@@ -207,14 +201,6 @@ int MultipleLightSources() {
 
 		//set our shader program to be the active shader for OpenGL
 		lightingShader.Bind();
-
-		//lightPos.x = cosf(glfwGetTime());
-		//lightPos.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
-		//lightPos.z = sinf(glfwGetTime());
-
-		/*lightColor.x = cosf(glfwGetTime());
-		lightColor.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
-		lightColor.z = sinf(glfwGetTime());*/
 
 		view = fpsCamera.GenerateViewMatrix();
 
