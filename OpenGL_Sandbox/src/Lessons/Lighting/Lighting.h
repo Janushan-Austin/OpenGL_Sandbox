@@ -4,3 +4,4 @@ int PhongLightingLesson();
 int MaterialLesson();
 int LightingMapLesson();
 int LightCastersLesson();
+int MultipleLightSources();

@@ -21,7 +21,7 @@ in vec2 fTexCoord;
 uniform MaterialProperties material;
 uniform LightProperties light;
 
-uniform vec3 viewPos  = vec3(0.0);
+uniform vec3 viewPos;
 
 out vec4 FragColor;
 
@@ -35,15 +35,16 @@ void main(){
 
 	float lightToNormalTheta = max(dot(lightDir, normal), 0.0);
 
-	vec3 diffuseLight = (texture(material.diffuse, fTexCoord).xyz * lightToNormalTheta) * light.diffuseStrength;
+	vec3 diffuseLight = texture(material.diffuse, fTexCoord).xyz * lightToNormalTheta * light.diffuseStrength;
 
 	//calculate specular lighting
 	vec3 viewDir = normalize(viewPos - fPos);
-	vec3 reflectDir = reflect(-lightDir, normal);
+	vec3 reflectDir = normalize(reflect(-lightDir, normal));
 	
 	float specPow = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+	//specPow = 0;
 
-	vec3 specularLight = specPow * texture(material.specular, fTexCoord).xyz * light.specularStrength;
+	vec3 specularLight = light.specularStrength * specPow * texture(material.specular, fTexCoord).xyz;
 
 	vec3 result = ambientLight + diffuseLight + specularLight;
 

@@ -105,6 +105,9 @@
     <ClCompile Include="src\Lessons\Lighting\LightCasters\LightCastersLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Lighting\MultipleLightSources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -215,5 +218,7 @@
     <None Include="res\shaders\Lighting\LightCasters\DirectionLight.frag" />
     <None Include="res\shaders\Lighting\LightCasters\PointLight.frag" />
     <None Include="res\shaders\Lighting\LightCasters\SpotLight.frag" />
+    <None Include="res\shaders\Lighting\Phong-Cumulative.vert" />
+    <None Include="res\shaders\Lighting\Phong-Cumulative.frag" />
   </ItemGroup>
 </Project>

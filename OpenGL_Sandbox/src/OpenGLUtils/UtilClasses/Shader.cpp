@@ -135,6 +135,11 @@ void Shader::SetUniformVec3(const std::string& name, glm::vec3 vector) {
 	}
 }
 
+void Shader::SetUniformVec3(const std::string & name, float v0, float v1, float v2)
+{
+	SetUniform3f(name, v0, v1, v2);
+}
+
 void Shader::SetUniformMat4(const std::string& name, glm::mat4 matrix) {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
