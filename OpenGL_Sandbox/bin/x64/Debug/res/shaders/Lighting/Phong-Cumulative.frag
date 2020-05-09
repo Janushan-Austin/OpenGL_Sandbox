@@ -67,7 +67,7 @@ void main(){
 	vec3 normal = normalize(fNormal);
 	vec3 viewDirection = normalize(viewPos - fPos);
 
-	//lightingResult += CalculateDirectionalLighting(directionalLight, normal, viewDirection);
+	lightingResult += CalculateDirectionalLighting(directionalLight, normal, viewDirection);
 
 	for(int i=0; i < NR_POINTLIGHTS; i++)
 	{
