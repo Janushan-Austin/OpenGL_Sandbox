@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	MultipleLightSources();
+	ModelLoadingLesson();
 	return 0;
 }

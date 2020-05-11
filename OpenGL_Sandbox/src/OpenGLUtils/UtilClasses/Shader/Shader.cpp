@@ -35,9 +35,9 @@ void Shader::SetUniform1i(const std::string & name, int v0)
 	{
 		glUniform1i(GetUniformLocation(name), v0);
 	}
-	else {
+	/*else {
 		std::cout << "uniform " << name << " in shader "  << shaderID << " could not be found\n";
-	}
+	}*/
 }
 
 void Shader::SetUniform2i(const std::string & name, int v0, int v1)

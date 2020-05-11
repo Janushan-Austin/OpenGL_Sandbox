@@ -111,6 +111,12 @@
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Models\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Models\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -191,6 +197,15 @@
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Models\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Models\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lessons\ModelLoading\ModelLoadingLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\DefaultShader\BasicShader.vert" />
@@ -203,7 +218,6 @@
     <None Include="res\shaders\BasicShaders\VertexPositionColor.vert" />
     <None Include="res\shaders\DefaultShader\DefaultShader.frag" />
     <None Include="res\shaders\BasicShaders\SimpleTexture.vert" />
-    <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.frag" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.vert" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\MVP.vert" />
@@ -223,5 +237,7 @@
     <None Include="res\shaders\Lighting\LightCasters\SpotLight.frag" />
     <None Include="res\shaders\Lighting\Phong-Cumulative.vert" />
     <None Include="res\shaders\Lighting\Phong-Cumulative.frag" />
+    <None Include="res\shaders\BasicShaders\blendTexture.frag" />
+    <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
   </ItemGroup>
 </Project>

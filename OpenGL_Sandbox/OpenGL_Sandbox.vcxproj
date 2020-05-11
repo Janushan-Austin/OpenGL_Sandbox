@@ -103,7 +103,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc141-mt.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
@@ -125,7 +125,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
       <AdditionalIncludeDirectories>$(SolutionDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc141-mt.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
@@ -151,7 +151,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc141-mt.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
@@ -177,7 +177,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc141-mt.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>call powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File CreateAllHeaders.ps1  src allLessons.h Lessons
@@ -191,6 +191,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
     <None Include="res\shaders\Lighting\LightCasters\DirectionLight.frag" />
     <None Include="res\shaders\Lighting\LightCasters\PointLight.frag" />
     <None Include="res\shaders\Lighting\LightCasters\SpotLight.frag" />
@@ -206,6 +207,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </None>
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Models\Model.cpp" />
     <ClCompile Include="src\Lessons\Lighting\LightCasters\LightCastersLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\Material\LightingMapLesson.cpp" />
     <ClCompile Include="src\Lessons\Lighting\Material\MaterialLesson.cpp" />
@@ -226,6 +228,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
     <ClCompile Include="src\Lessons\Shaders\ShaderLesson.cpp" />
     <ClCompile Include="src\Lessons\Textures\TexturesLesson.cpp" />
     <ClCompile Include="src\Lessons\TransformationsLesson\TransformationsLesson.cpp" />
+    <ClCompile Include="src\OpenGLUtils\UtilClasses\Models\Mesh.cpp" />
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Shader\Shader.cpp" />
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\glad.c" />
@@ -239,6 +242,8 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
     <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Lessons\ModelLoading\ModelLoadingLesson.h" />
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Models\Model.h" />
     <ClInclude Include="src\Lessons\Lighting\Lighting.h" />
     <ClInclude Include="src\Lessons\Lighting\Material\lightingMapLesson.h" />
     <ClInclude Include="src\Lessons\Lighting\Material\MaterialLesson.h" />
@@ -259,6 +264,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
       <FileType>CppHeader</FileType>
     </ClCompile>
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Event\Event.h" />
+    <ClInclude Include="src\OpenGLUtils\UtilClasses\Models\Mesh.h" />
     <ClInclude Include="src\OpenGLUtils\UtilFunctions\Input.h" />
     <ClInclude Include="src\OpenGLUtils\UtilFunctions\stb_Image_helpers.h" />
     <ClInclude Include="src\OpenGLUtils\UtilClasses\Shader\Shader.h" />
@@ -272,7 +278,7 @@ xcopy "$(ProjectDir)libs" "$(OutDir)" /E /I /Y /R /Q</Command>
   <ItemGroup>
     <None Include="res\shaders\BasicShaders\BasicUniforms.frag" />
     <None Include="res\shaders\BasicShaders\BasicYellowShader.frag" />
-    <None Include="res\shaders\BasicShaders\SimpleTexture.frag" />
+    <None Include="res\shaders\BasicShaders\blendTexture.frag" />
     <None Include="res\shaders\BasicShaders\SimpleTexture.vert" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\MVP.vert" />
     <None Include="res\shaders\BasicShaders\TransformationShaders\TransformationShader.frag" />
