@@ -201,7 +201,7 @@ unsigned int Shader::CreateShader(const std::string& vertexShader, const std::st
 	if (!programLinkSuccess) {
 		char infoLog[512];
 		glGetShaderInfoLog(program, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+		std::cout << "ERROR:: SHADDER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 	}
 
 	glDeleteShader(vs);
@@ -223,7 +223,7 @@ unsigned int Shader::CompileShader(int type, const std::string& shaderSource)
 	if (!shaderCompilationSuccess) {
 		char infoLog[512];
 		glGetShaderInfoLog(shader, sizeof(infoLog), NULL, infoLog);
-		std::cout << "ERROR:: SHADDER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+		std::cout << "ERROR:: SHADDER::" << (type == GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT") << "::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
 	return shader;
