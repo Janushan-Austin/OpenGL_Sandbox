@@ -63,7 +63,7 @@ int SimpleColorLighting() {
 	
 
 	float deltaTime = 0;
-	float lastFrame = glfwGetTime();
+	float lastFrame = (float)glfwGetTime();
 
 	glm::vec3 objectColor(1.0f, 0.5f, 0.31f);
 
@@ -172,8 +172,9 @@ int SimpleColorLighting() {
 
 	while (!glfwWindowShouldClose(window)) {
 		//check input
-		deltaTime = glfwGetTime() - lastFrame;
-		lastFrame = glfwGetTime();
+		float currentTime = (float)glfwGetTime();
+		deltaTime = currentTime - lastFrame;
+		lastFrame = currentTime;
 		processInput(window);
 		//processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
 		processCameraInput(window, fpsCamera, deltaTime);
@@ -186,17 +187,17 @@ int SimpleColorLighting() {
 		lightingShader.Bind();
 
 		float radius = 10.0f;
-		float camX = sin(glfwGetTime()) * radius;
-		float camZ = cos(glfwGetTime()) * radius;
+		float camX = sin(currentTime) * radius;
+		float camZ = cos(currentTime) * radius;
 
 		view = fpsCamera.GenerateViewMatrix();
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
-		lightingShader.SetUniformMat4("view", view);
-		lightingShader.SetUniformMat4("projection", projection);
-		lightingShader.SetUniform3f("objectColor", objectColor.x, objectColor.y, objectColor.z);
-		lightingShader.SetUniform3f("lightColor", lightColor.x, lightColor.y, lightColor.z);
+		lightingShader.SetMat4("view", view);
+		lightingShader.SetMat4("projection", projection);
+		lightingShader.SetFloat3("objectColor", objectColor.x, objectColor.y, objectColor.z);
+		lightingShader.SetFloat3("lightColor", lightColor.x, lightColor.y, lightColor.z);
 
 
 
@@ -207,7 +208,7 @@ int SimpleColorLighting() {
 			glm::mat4 model(1.0f);
 			model = glm::translate(model, cubePositions[i]);
 			model = glm::rotate(model, (float)glfwGetTime()* glm::radians(20.0f*i), glm::vec3(0.5f, 1.0f, 0.0f));
-			lightingShader.SetUniformMat4("model", model);
+			lightingShader.SetMat4("model", model);
 
 
 			//OpenGL function to draw the data in the currently active vertex array using the Element Buffer Object
@@ -216,13 +217,13 @@ int SimpleColorLighting() {
 		}
 
 		lampShader.Bind();
-		lampShader.SetUniformMat4("view", view);
-		lampShader.SetUniformMat4("projection", projection);
-		lampShader.SetUniform3f("lightColor", lightColor.x, lightColor.y, lightColor.z);
+		lampShader.SetMat4("view", view);
+		lampShader.SetMat4("projection", projection);
+		lampShader.SetFloat3("lightColor", lightColor.x, lightColor.y, lightColor.z);
 
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), lightPos);
 		model = glm::scale(model, lightScale);
-		lampShader.SetUniformMat4("model", model);
+		lampShader.SetMat4("model", model);
 
 
 		glBindVertexArray(CubeVAO);

@@ -28,7 +28,7 @@ Shader::~Shader()
 void Shader::Bind() { glUseProgram(shaderID); }
 void Shader::UnBind() { glUseProgram(0); }
 
-void Shader::SetUniform1i(const std::string & name, int v0)
+void Shader::SetInt1(const std::string & name, int v0)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -40,7 +40,7 @@ void Shader::SetUniform1i(const std::string & name, int v0)
 	}*/
 }
 
-void Shader::SetUniform2i(const std::string & name, int v0, int v1)
+void Shader::SetInt2(const std::string & name, int v0, int v1)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -52,7 +52,7 @@ void Shader::SetUniform2i(const std::string & name, int v0, int v1)
 	}
 }
 
-void Shader::SetUniform3i(const std::string & name, int v0, int v1, int v2)
+void Shader::SetInt3(const std::string & name, int v0, int v1, int v2)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -64,7 +64,7 @@ void Shader::SetUniform3i(const std::string & name, int v0, int v1, int v2)
 	}
 }
 
-void Shader::SetUniform4i(const std::string & name, int v0, int v1, int v2, int v3)
+void Shader::SetInt3(const std::string & name, int v0, int v1, int v2, int v3)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -76,7 +76,7 @@ void Shader::SetUniform4i(const std::string & name, int v0, int v1, int v2, int 
 	}
 }
 
-void Shader::SetUniform1f(const std::string & name, float v0)
+void Shader::SetFloat1(const std::string & name, float v0)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -88,7 +88,7 @@ void Shader::SetUniform1f(const std::string & name, float v0)
 	}
 }
 
-void Shader::SetUniform2f(const std::string & name, float v0, float v1)
+void Shader::SetFloat2(const std::string & name, float v0, float v1)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -100,7 +100,7 @@ void Shader::SetUniform2f(const std::string & name, float v0, float v1)
 	}
 }
 
-void Shader::SetUniform3f(const std::string & name, float v0, float v1, float v2)
+void Shader::SetFloat3(const std::string & name, float v0, float v1, float v2)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -112,7 +112,7 @@ void Shader::SetUniform3f(const std::string & name, float v0, float v1, float v2
 	}
 }
 
-void Shader::SetUniform4f(const std::string & name, float v0, float v1, float v2, float v3)
+void Shader::SetFloat4(const std::string & name, float v0, float v1, float v2, float v3)
 {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
@@ -124,7 +124,7 @@ void Shader::SetUniform4f(const std::string & name, float v0, float v1, float v2
 	}
 }
 
-void Shader::SetUniformVec3(const std::string& name, glm::vec3 vector) {
+void Shader::SetVec3(const std::string& name, glm::vec3 vector) {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
 	{
@@ -135,12 +135,12 @@ void Shader::SetUniformVec3(const std::string& name, glm::vec3 vector) {
 	}
 }
 
-void Shader::SetUniformVec3(const std::string & name, float v0, float v1, float v2)
+void Shader::SetVec3(const std::string & name, float v0, float v1, float v2)
 {
-	SetUniform3f(name, v0, v1, v2);
+	SetFloat3(name, v0, v1, v2);
 }
 
-void Shader::SetUniformMat4(const std::string& name, glm::mat4 matrix) {
+void Shader::SetMat4(const std::string& name, glm::mat4 matrix) {
 	int location = GetUniformLocation(name);
 	if (location >= 0)
 	{

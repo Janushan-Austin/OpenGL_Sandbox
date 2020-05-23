@@ -215,20 +215,21 @@ int CameraLesson() {
 	//Bind our texture before drawing
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureContainer);
-	shader.SetUniform1i("texture1", 0);
+	shader.SetInt1("texture1", 0);
 
 	//Bind our texture before drawing
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, textureSmileyFace);
-	shader.SetUniform1i("texture2", 1);
+	shader.SetInt1("texture2", 1);
 
 	float deltaTime = 0;
-	float lastFrame = glfwGetTime();
+	float lastFrame = (float)glfwGetTime();
 
 	while (!glfwWindowShouldClose(window)) {
 		//check input
-		deltaTime = glfwGetTime() - lastFrame;
-		lastFrame = glfwGetTime();
+		float currentTime = (float)glfwGetTime();
+		deltaTime = currentTime - lastFrame;
+		lastFrame = currentTime;
 		processInput(window);
 		//processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
 		processCameraInput(window, fpsCamera, deltaTime);
@@ -244,16 +245,16 @@ int CameraLesson() {
 		projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
 
 		float radius = 10.0f;
-		float camX = sin(glfwGetTime()) * radius;
-		float camZ = cos(glfwGetTime()) * radius;
+		float camX = sin(currentTime) * radius;
+		float camZ = cos(currentTime) * radius;
 		glm::mat4 view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));//glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
 		glm::mat4 myView;// = CreateLookAtMatrix(cameraPos, cameraPos + cameraFront, cameraUp);
 		myView = fpsCamera.GenerateViewMatrix();
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
-		shader.SetUniformMat4("view", myView);
-		shader.SetUniformMat4("projection", projection);
+		shader.SetMat4("view", myView);
+		shader.SetMat4("projection", projection);
 
 
 
@@ -264,7 +265,7 @@ int CameraLesson() {
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, cubePositions[i]);
 			//model = glm::rotate(model, (float)glfwGetTime()* glm::radians(20.0f*i), glm::vec3(0.5f, 1.0f, 0.0f));
-			shader.SetUniformMat4("model", model);
+			shader.SetMat4("model", model);
 
 
 			//OpenGL function to draw the data in the currently active vertex array using the Element Buffer Object

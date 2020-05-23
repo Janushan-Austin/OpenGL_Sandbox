@@ -61,7 +61,7 @@ int PhongLightingLesson() {
 	Shader lampShader("res/shaders/Lighting/SimpleLightSource.vert", "res/shaders/Lighting/SimpleLightSource.frag");
 
 	float deltaTime = 0;
-	float lastFrame = glfwGetTime();
+	float lastFrame = (float)glfwGetTime();
 
 	glm::vec3 objectColor(1.0f, 0.5f, 0.31f);
 
@@ -175,8 +175,9 @@ int PhongLightingLesson() {
 
 	while (!glfwWindowShouldClose(window)) {
 		//check input
-		deltaTime = glfwGetTime() - lastFrame;
-		lastFrame = glfwGetTime();
+		float currentTime = (float)glfwGetTime();
+		deltaTime = currentTime - lastFrame;
+		lastFrame = currentTime;
 		processInput(window);
 		//processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
 		processCameraInput(window, fpsCamera, deltaTime);
@@ -196,13 +197,13 @@ int PhongLightingLesson() {
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
-		lightingShader.SetUniformMat4("view", view);
-		lightingShader.SetUniformMat4("projection", projection);
-		lightingShader.SetUniformVec3("objectColor", objectColor);
-		lightingShader.SetUniformVec3("lightPos", lightPos);
+		lightingShader.SetMat4("view", view);
+		lightingShader.SetMat4("projection", projection);
+		lightingShader.SetVec3("objectColor", objectColor);
+		lightingShader.SetVec3("lightPos", lightPos);
 		//lightingShader.SetUniformVec3("worldLightPos", lightPos);
-		lightingShader.SetUniformVec3("lightColor", lightColor);
-		lightingShader.SetUniformVec3("viewPos", fpsCamera.Position());
+		lightingShader.SetVec3("lightColor", lightColor);
+		lightingShader.SetVec3("viewPos", fpsCamera.Position());
 
 
 
@@ -213,7 +214,7 @@ int PhongLightingLesson() {
 			glm::mat4 model(1.0f);
 			model = glm::translate(model, cubePositions[i]);
 			model = glm::rotate(model, (float)glfwGetTime()* glm::radians(20.0f*i), glm::vec3(0.5f, 1.0f, 0.0f));
-			lightingShader.SetUniformMat4("model", model);
+			lightingShader.SetMat4("model", model);
 
 
 			//OpenGL function to draw the data in the currently active vertex array using the Element Buffer Object
@@ -222,13 +223,13 @@ int PhongLightingLesson() {
 		}
 
 		lampShader.Bind();
-		lampShader.SetUniformMat4("view", view);
-		lampShader.SetUniformMat4("projection", projection);
-		lampShader.SetUniform3f("lightColor", lightColor.x, lightColor.y, lightColor.z);
+		lampShader.SetMat4("view", view);
+		lampShader.SetMat4("projection", projection);
+		lampShader.SetFloat3("lightColor", lightColor.x, lightColor.y, lightColor.z);
 
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), lightPos);
 		model = glm::scale(model, lightScale);
-		lampShader.SetUniformMat4("model", model);
+		lampShader.SetMat4("model", model);
 
 
 		glBindVertexArray(CubeVAO);

@@ -66,14 +66,15 @@ int ModelLoadingLesson() {
 	Model  backpackModel((char*)"res/Models/Backpack/backpack.obj");
 
 	float deltaTime = 0;
-	float lastFrame = glfwGetTime();
+	float lastFrame = (float)glfwGetTime();
 
 	projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
 
 	while (!glfwWindowShouldClose(window)) {
 		//check input
-		deltaTime = glfwGetTime() - lastFrame;
-		lastFrame = glfwGetTime();
+		float currentTime = (float)glfwGetTime();
+		deltaTime = currentTime - lastFrame;
+		lastFrame = currentTime;
 
 		processInput(window);
 		processCameraInput(window, fpsCamera, deltaTime);
@@ -87,12 +88,12 @@ int ModelLoadingLesson() {
 
 		view = fpsCamera.GenerateViewMatrix();
 
-		shader.SetUniformMat4("view", view);
-		shader.SetUniformMat4("projection", projection);
+		shader.SetMat4("view", view);
+		shader.SetMat4("projection", projection);
 		glm::mat4 model(1.0f);
 		model = glm::translate(model, glm::vec3(0.0, 0.0, -5.0));
 
-		shader.SetUniformMat4("model", model);
+		shader.SetMat4("model", model);
 		backpackModel.Draw(shader,  "material");
 
 		// check and call events and swap buffers

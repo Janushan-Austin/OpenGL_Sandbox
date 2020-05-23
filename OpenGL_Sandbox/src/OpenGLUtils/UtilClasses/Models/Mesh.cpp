@@ -46,14 +46,14 @@ void Mesh::Draw(Shader shader, const std::string& uniformName)
 			heightTextrueNumber++;
 		}
 
-		shader.SetUniform1i(uniformComplete + textureName + textureNumber, i);
+		shader.SetInt1(uniformComplete + textureName + textureNumber, i);
 		glBindTexture(GL_TEXTURE_2D, Textures[i].id);
 	}
 	glActiveTexture(GL_TEXTURE0);
 
 	//draw the mesh
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, (GLsizei)Indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
 

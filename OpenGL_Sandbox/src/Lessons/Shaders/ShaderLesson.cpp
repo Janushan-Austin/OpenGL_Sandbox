@@ -86,7 +86,7 @@ int ShaderLesson() {
 		//check input
 		processInput(window);
 
-		float time = glfwGetTime();
+		float time = (float)glfwGetTime();
 		float greenValue = std::sin(time) / 2.0f + 0.5f;
 
 		//rendering commands here
@@ -97,7 +97,7 @@ int ShaderLesson() {
 		shaderTest.Bind();
 
 		//set Uniform values for our shader
-		shaderTest.SetUniform4f("myColor", 0.0, greenValue, 0.0, 1.0);
+		shaderTest.SetFloat4("myColor", 0.0, greenValue, 0.0, 1.0);
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);

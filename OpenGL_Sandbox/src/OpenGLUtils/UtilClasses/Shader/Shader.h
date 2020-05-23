@@ -23,19 +23,19 @@ public:
 	void Bind();
 	void UnBind();
 
-	void SetUniform1i(const std::string& name, int v0);
-	void SetUniform2i(const std::string& name, int v0, int v1);
-	void SetUniform3i(const std::string& name, int v0, int v1, int v2);
-	void SetUniform4i(const std::string& name, int v0, int v1, int v2, int v3);
+	void SetInt1(const std::string& name, int v0);
+	void SetInt2(const std::string& name, int v0, int v1);
+	void SetInt3(const std::string& name, int v0, int v1, int v2);
+	void SetInt3(const std::string& name, int v0, int v1, int v2, int v3);
 
-	void SetUniform1f(const std::string& name, float v0);
-	void SetUniform2f(const std::string& name, float v0, float v1);
-	void SetUniform3f(const std::string& name, float v0, float v1, float v2);
-	void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
+	void SetFloat1(const std::string& name, float v0);
+	void SetFloat2(const std::string& name, float v0, float v1);
+	void SetFloat3(const std::string& name, float v0, float v1, float v2);
+	void SetFloat4(const std::string& name, float v0, float v1, float v2, float v3);
 
-	void SetUniformVec3(const std::string& name, glm::vec3);
-	void SetUniformVec3(const std::string& name, float v0, float v1, float v2);
-	void SetUniformMat4(const std::string& name, glm::mat4 matrix);
+	void SetVec3(const std::string& name, glm::vec3);
+	void SetVec3(const std::string& name, float v0, float v1, float v2);
+	void SetMat4(const std::string& name, glm::mat4 matrix);
 
 	int GetUniformLocation(const std::string& name);
 

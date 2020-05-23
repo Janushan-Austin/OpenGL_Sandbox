@@ -177,12 +177,12 @@ int CoordinateSystems() {
 	//Bind our texture before drawing
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureContainer);
-	shader.SetUniform1i("texture1", 0);
+	shader.SetInt1("texture1", 0);
 
 	//Bind our texture before drawing
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, textureSmileyFace);
-	shader.SetUniform1i("texture2", 1);
+	shader.SetInt1("texture2", 1);
 
 	while (!glfwWindowShouldClose(window)) {
 		//check input
@@ -203,8 +203,8 @@ int CoordinateSystems() {
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
-		shader.SetUniformMat4("view", view);
-		shader.SetUniformMat4("projection", theirPerspective);
+		shader.SetMat4("view", view);
+		shader.SetMat4("projection", theirPerspective);
 
 		
 
@@ -215,7 +215,7 @@ int CoordinateSystems() {
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, cubePositions[i]);
 			model = glm::rotate(model, (float)glfwGetTime()* glm::radians(20.0f*i), glm::vec3(0.5f, 1.0f, 0.0f));
-			shader.SetUniformMat4("model", model);
+			shader.SetMat4("model", model);
 
 
 			//OpenGL function to draw the data in the currently active vertex array using the Element Buffer Object

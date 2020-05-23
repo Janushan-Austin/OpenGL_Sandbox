@@ -84,9 +84,6 @@
     <ClCompile Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Lessons\Lighting\PhongLightingLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -171,9 +168,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\Lighting\SimpleColor\SimpleColorLighting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OpenGLUtils\UtilClasses\callBackWrappers\MouseGLCallbackWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\Lighting\PhongLightingLesson.h">

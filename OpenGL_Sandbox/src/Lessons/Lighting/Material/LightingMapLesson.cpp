@@ -65,7 +65,7 @@ int LightingMapLesson() {
 	Shader lampShader("res/shaders/Lighting/Simple/SimpleLightSource.vert", "res/shaders/Lighting/Simple/SimpleLightSource.frag");
 
 	float deltaTime = 0;
-	float lastFrame = glfwGetTime();
+	float lastFrame = (float)glfwGetTime();
 
 	glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -187,8 +187,9 @@ int LightingMapLesson() {
 
 	while (!glfwWindowShouldClose(window)) {
 		//check input
-		deltaTime = glfwGetTime() - lastFrame;
-		lastFrame = glfwGetTime();
+		float currentTime = (float)glfwGetTime();
+		deltaTime = currentTime - lastFrame;
+		lastFrame = currentTime;
 		processInput(window);
 		//processCameraInput(window, cameraPos, cameraFront, cameraUp, 0.5, deltaTime);
 		processCameraInput(window, fpsCamera, deltaTime);
@@ -204,30 +205,30 @@ int LightingMapLesson() {
 		//lightPos.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
 		//lightPos.z = sinf(glfwGetTime());
 
-		lightColor.x = cosf(glfwGetTime());
-		lightColor.y = cosf(glfwGetTime()) * sinf(glfwGetTime());
-		lightColor.z = sinf(glfwGetTime());
+		lightColor.x = cosf(currentTime);
+		lightColor.y = cosf(currentTime) * sinf(currentTime);
+		lightColor.z = sinf(currentTime);
 
 		view = fpsCamera.GenerateViewMatrix();
 
 		unsigned int numberCubes = sizeof(cubePositions) / sizeof(cubePositions[0]);
 
-		lightingShader.SetUniformMat4("view", view);
-		lightingShader.SetUniformMat4("projection", projection);
+		lightingShader.SetMat4("view", view);
+		lightingShader.SetMat4("projection", projection);
 
 		//setting up the light properties
-		lightingShader.SetUniformVec3("light.position", lightPos);
-		lightingShader.SetUniformVec3("light.ambientStrength", lightColor * glm::vec3(0.2f));
-		lightingShader.SetUniformVec3("light.diffuseStrength", lightColor * glm::vec3(0.8f));
-		lightingShader.SetUniformVec3("light.specularStrength", glm::vec3(1.0f));
+		lightingShader.SetVec3("light.position", lightPos);
+		lightingShader.SetVec3("light.ambientStrength", lightColor * glm::vec3(0.2f));
+		lightingShader.SetVec3("light.diffuseStrength", lightColor * glm::vec3(0.8f));
+		lightingShader.SetVec3("light.specularStrength", glm::vec3(1.0f));
 
 		//give the shader our camera's position
-		lightingShader.SetUniformVec3("viewPos", fpsCamera.Position());
+		lightingShader.SetVec3("viewPos", fpsCamera.Position());
 
 		//setting up the material uniform properties
-		lightingShader.SetUniform1i("material.diffuse", 0);
-		lightingShader.SetUniform1i("material.specular", 1);
-		lightingShader.SetUniform1f("material.shininess", 32.0f);
+		lightingShader.SetInt1("material.diffuse", 0);
+		lightingShader.SetInt1("material.specular", 1);
+		lightingShader.SetFloat1("material.shininess", 32.0f);
 
 		
 
@@ -245,7 +246,7 @@ int LightingMapLesson() {
 			glm::mat4 model(1.0f);
 			model = glm::translate(model, cubePositions[i]);
 			model = glm::rotate(model, (float)glfwGetTime()* glm::radians(20.0f*i), glm::vec3(0.5f, 1.0f, 0.0f));
-			lightingShader.SetUniformMat4("model", model);
+			lightingShader.SetMat4("model", model);
 
 
 			//OpenGL function to draw the data in the currently active vertex array using the Element Buffer Object
@@ -254,13 +255,13 @@ int LightingMapLesson() {
 		}
 
 		lampShader.Bind();
-		lampShader.SetUniformMat4("view", view);
-		lampShader.SetUniformMat4("projection", projection);
-		lampShader.SetUniformVec3("lightColor", lightColor);
+		lampShader.SetMat4("view", view);
+		lampShader.SetMat4("projection", projection);
+		lampShader.SetVec3("lightColor", lightColor);
 
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), lightPos);
 		model = glm::scale(model, lightScale);
-		lampShader.SetUniformMat4("model", model);
+		lampShader.SetMat4("model", model);
 
 
 		glBindVertexArray(CubeVAO);

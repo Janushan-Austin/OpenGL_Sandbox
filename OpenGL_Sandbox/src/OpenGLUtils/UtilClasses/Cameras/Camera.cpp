@@ -50,5 +50,5 @@ void Camera::MouseMovementEvent(GLFWwindow * window, double xPos, double yPos)
 
 void Camera::MouseScrollEvent(GLFWwindow * window, double xOffset, double yOffset)
 {
-	ProcessMouseScroll(yOffset);
+	ProcessMouseScroll((float)yOffset);
 }

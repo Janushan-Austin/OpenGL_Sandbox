@@ -94,7 +94,7 @@ int ShaderLessonEx3() {
 		shaderTest.Bind();
 
 		//set Uniform values for our shader
-		shaderTest.SetUniform1f("xOffset", 0.25);
+		shaderTest.SetFloat1("xOffset", 0.25);
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);

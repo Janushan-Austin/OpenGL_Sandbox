@@ -146,12 +146,12 @@ int TexturesLesson() {
 		//Bind our texture before drawing
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureContainer);
-		shaderTest.SetUniform1i("texture1", 0);
+		shaderTest.SetInt1("texture1", 0);
 
 		//Bind our texture before drawing
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, textureSmileyFace);
-		shaderTest.SetUniform1i("texture2", 1);
+		shaderTest.SetInt1("texture2", 1);
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);

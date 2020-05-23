@@ -112,7 +112,7 @@ public:
 	}
 
 	void operator () (params... args) {
-		for (int i = 0; i < NumSubscribers; i++) {
+		for (unsigned int i = 0; i < NumSubscribers; i++) {
 			eventSubcribers[i].func(args...);
 		}
 	}

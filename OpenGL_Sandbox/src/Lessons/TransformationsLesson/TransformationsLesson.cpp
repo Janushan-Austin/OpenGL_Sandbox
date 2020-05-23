@@ -109,17 +109,17 @@ int TransformationsLesson() {
 		transformationMat = glm::rotate(transformationMat, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 		transformationMat = glm::scale(transformationMat, glm::vec3(1.0f));
 
-		shaderTest.SetUniformMat4("transformationMat", transformationMat);
+		shaderTest.SetMat4("transformationMat", transformationMat);
 
 		//Bind our texture before drawing
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureContainer);
-		shaderTest.SetUniform1i("texture1", 0);
+		shaderTest.SetInt1("texture1", 0);
 
 		//Bind our texture before drawing
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, textureSmileyFace);
-		shaderTest.SetUniform1i("texture2", 1);
+		shaderTest.SetInt1("texture2", 1);
 
 		//set the vertex array to our vertex array with the triangle information
 		glBindVertexArray(VertexArrayObject);
@@ -130,10 +130,10 @@ int TransformationsLesson() {
 		transformationMat = glm::mat4(1.0f);
 		transformationMat = glm::translate(transformationMat, glm::vec3(-0.5f, 0.5f, 0.0f));
 		//transformationMat = glm::rotate(transformationMat, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-		transformationMat = glm::scale(transformationMat, glm::vec3(std::sin(glfwGetTime())));
+		transformationMat = glm::scale(transformationMat, glm::vec3(std::sin((float)glfwGetTime())));
 
 		
-		shaderTest.SetUniformMat4("transformationMat", transformationMat);
+		shaderTest.SetMat4("transformationMat", transformationMat);
 		//draw a second container at the top left of the screen using the same vertex data just a different transform
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, 0);
 
