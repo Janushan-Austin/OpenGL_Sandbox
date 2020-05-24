@@ -1,6 +1,5 @@
 #pragma once
 //included for debugging reasons
-#include <iostream>
 #include <functional>
 
 
@@ -21,7 +20,6 @@ public:
 		NumSubscribers = 0;
 		NumParams = sizeof...(params);
 		eventSubcribers = new EventHandler[Size];
-		std::cout << sizeof...(params) << std::endl;
 	}
 
 	Event(const Event& eventRef) {
