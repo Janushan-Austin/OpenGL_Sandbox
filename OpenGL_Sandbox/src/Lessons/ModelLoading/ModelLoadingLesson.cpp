@@ -32,7 +32,7 @@ int ModelLoadingLesson() {
 	InitGLFW(3, 3);
 
 	//Create a window for glfw
-	GLFWwindow* window = glfwCreateWindow(initialScreenWidth, initialScreenHeight, "LearnOpenGL Cameras", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(initialScreenWidth, initialScreenHeight, "LearnOpenGL Model Loading", NULL, NULL);
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window\n";
 		glfwTerminate();
