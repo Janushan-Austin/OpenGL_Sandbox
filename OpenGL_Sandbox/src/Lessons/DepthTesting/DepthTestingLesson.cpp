@@ -28,7 +28,6 @@ int DepthTestingLesson() {
 		projection = glm::perspectiveFov(glm::radians(fpsCamera.FOV()), (float)fpsCamera.Width(), (float)fpsCamera.Height(), 0.1f, 100.0f);
 	};
 
-
 	InitGLFW(3, 3);
 
 	//Create a window for glfw
@@ -201,13 +200,12 @@ int DepthTestingLesson() {
 		shader.SetMat4("view", view);
 		shader.SetMat4("projection", projection);
 		glm::mat4 model(1.0f);
-		model = glm::translate(model, glm::vec3(0.0, 0.0, -5.0));
-
+		//model = glm::translate(model, glm::vec3(0.0, 0.0, -5.0));		
+		shader.SetMat4("model", model);
+		planeMesh.Draw(shader);
+		
 		shader.SetMat4("model", model);
 		cubeMesh.Draw(shader);
-
-		model = glm::mat4(1.0f);
-		planeMesh.Draw(shader);
 
 		// check and call events and swap buffers
 		glfwSwapBuffers(window);
