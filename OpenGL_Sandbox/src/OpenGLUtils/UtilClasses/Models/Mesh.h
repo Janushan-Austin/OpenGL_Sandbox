@@ -15,9 +15,16 @@ struct Vertex {
 	glm::vec3 Bitangent;
 };
 
+enum class TextureType {
+	DIFFUSE,
+	SPECULAR,
+	NORMAL,
+	HEIGHT
+};
+
 struct Texture {
 	unsigned int id;
-	std::string type;
+	TextureType type;
 	std::string path;
 };
 

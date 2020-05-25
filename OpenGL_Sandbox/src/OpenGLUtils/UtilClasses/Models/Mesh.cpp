@@ -28,20 +28,23 @@ void Mesh::Draw(Shader shader, const std::string& uniformName)
 	for (unsigned int i = 0; i < Textures.size(); i++) {
 		glActiveTexture(GL_TEXTURE0 + i);
 
-		textureName = Textures[i].type;
-		if (textureName == "texture_diffuse") {
+		if (Textures[i].type == TextureType::DIFFUSE) {
+			textureName = "texture_diffuse";
 			textureNumber = std::to_string(diffuseTextrueNumber);
 			diffuseTextrueNumber++;
 		}
-		else if (textureName == "texture_specular") {
+		else if (Textures[i].type == TextureType::SPECULAR) {
+			textureName = "texture_specular";
 			textureNumber = std::to_string(specularTextrueNumber);
 			specularTextrueNumber++;
 		}
-		else if (textureName == "texture_normal") {
+		else if (Textures[i].type == TextureType::NORMAL) {
+			textureName = "texture_normal";
 			textureNumber = std::to_string(normalTextrueNumber);
 			normalTextrueNumber++;
 		}
-		else if (textureName == "texture_height") {
+		else if (Textures[i].type == TextureType::HEIGHT) {
+			textureName = "texture_height";
 			textureNumber = std::to_string(heightTextrueNumber);
 			heightTextrueNumber++;
 		}
