@@ -2,6 +2,6 @@
 #include "allLessons.h"
 
 int main() {
-	ModelLoadingLesson();
+	DepthTestingLesson();
 	return 0;
 }
