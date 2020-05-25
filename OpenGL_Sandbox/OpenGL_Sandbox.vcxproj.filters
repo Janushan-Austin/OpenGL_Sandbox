@@ -51,16 +51,10 @@
     <ClCompile Include="src\stb_Image_Implementation\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Lessons\TransformationsLesson\TransformationsLesson.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Lessons\CoordinateSystems\CoordinateSystems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\OpenGLUtils\Shapes\Cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Lessons\CameraLesson\CameraLesson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\OpenGLUtils\UtilFunctions\OpenGLHelpers.cpp">
@@ -114,6 +108,15 @@
     <ClCompile Include="src\OpenGLUtils\UtilClasses\Models\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lessons\Camera\CameraLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lessons\Transformations\TransformationsLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lessons\DepthTesting\DepthTestingLesson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\allLessons.h">
@@ -137,16 +140,10 @@
     <ClInclude Include="src\OpenGLUtils\Includes\stb_image_include.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Lessons\TransformationsLesson\TransformationsLesson.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Lessons\CoordinateSystems\CoordinateSystems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGLUtils\Shapes\Cube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Lessons\CameraLesson\CameraLesson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGLUtils\UtilFunctions\OpenGLHelpers.h">
@@ -198,6 +195,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lessons\ModelLoading\ModelLoadingLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lessons\Camera\CameraLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lessons\Transformations\TransformationsLesson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lessons\DepthTesting\DepthTestingLesson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
